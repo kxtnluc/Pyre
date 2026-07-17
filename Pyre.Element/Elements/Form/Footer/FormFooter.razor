@@ -1,0 +1,18 @@
+@namespace Pyre.Element.Form
+
+<div class="form__footer">
+    <span class="form__error">
+        @if (ParentForm?.ErrorMessage != null)
+        {
+            @ParentForm.ErrorMessage
+        }
+    </span>
+    <div class="form__footer__content">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [CascadingParameter] public Form? ParentForm { get; set; }
+}

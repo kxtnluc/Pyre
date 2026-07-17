@@ -1,0 +1,21 @@
+@namespace Pyre.Element.Card
+
+<div class="@ComputedClass" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    // Element Specific
+    // ==============================================================================================================
+    // Computed Classes & Styles
+    public string ComputedClass =>
+        $"card__action";
+
+    public string ComputedStyle =>
+        $"";
+}

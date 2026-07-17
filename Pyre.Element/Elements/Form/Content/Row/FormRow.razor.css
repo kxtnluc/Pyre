@@ -1,0 +1,6 @@
+.form__row {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+    justify-content: space-between;
+}

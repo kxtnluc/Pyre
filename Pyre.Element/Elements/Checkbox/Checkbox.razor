@@ -1,0 +1,38 @@
+@namespace Pyre.Element.Checkbox
+
+<label class="@ComputedWraperClass">
+    <input type="checkbox"
+           checked="@Value"
+           disabled="@(!Editable)"
+           @onchange="HandleCheckboxChange" />
+    <span class="checkmark"></span>
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span>@Label</span>
+    }
+</label>
+
+@code {
+    // Base
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public bool Value { get; set; }
+    [Parameter] public EventCallback<bool> ValueChanged { get; set; }
+    // Pyre Base
+    [Parameter] public bool Editable { get; set; } = true;
+    [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Info; // TODO
+    // Element Specific
+    // ==============================================================================================================
+    // Logic Handling
+    private async Task HandleCheckboxChange(ChangeEventArgs e)
+    {
+        Value = (bool)e.Value!;
+        await ValueChanged.InvokeAsync(Value);
+    }
+    // ==============================================================================================================
+    // Computed Classes & Styles
+    public string ComputedWraperClass =>
+        $"checkbox__wraper";
+
+    public string ComputedStyle =>
+        $"";
+}

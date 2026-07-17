@@ -1,0 +1,54 @@
+﻿@namespace Pyre.Element.Button
+
+<button class="@ComputedClass"
+        @onclick="OnClick"
+        disabled="@Disabled"
+        @attributes="AdditionalAttributes"
+        style="@ComputedStyle"
+    >
+    @if (Icon != null)
+    {
+        <span class="btn--icon">@Icon</span>
+    }
+    @ChildContent
+</button>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base {
+    [Parameter] public E_VARIANT Variant { get; set; } = E_VARIANT.Primary;
+    [Parameter] public E_STATUS Status { get; set; } = E_STATUS.Neutral;
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
+    // |
+    private string _variant => Variant.ToString().ToLower();
+    private string _status => Status.ToString().ToLower();
+    private string _size => Size.ToString().ToLower();
+    private string _color => Color.ToString().ToLower();
+    // }
+    // Element Specific
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    // ===============================================================================================================================
+
+    // Computed Classes & Styles
+    private string ComputedClass =>
+        $"btn btn--variant--{_variant} btn--size--{_size}";
+
+    private string ComputedStyle
+    {
+        get
+        {
+            var textColor = Variant == E_VARIANT.Outline
+                ? $"var(--color-{_color})"
+                : $"var(--color-{_color}-fg)";
+
+            return $"background-color: var(--color-{_color}); color: {textColor}; border-color: var(--color-{_color});";
+        }
+    }
+}

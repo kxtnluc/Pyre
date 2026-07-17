@@ -1,0 +1,144 @@
+:root {
+    /* --- Colors --- */
+    /* If colors are added or removed, make sure to update eColor.cs too */
+    /* Base RBG Values */
+    --color-primary-values: 31, 23, 21; /* Charcoal */ /* Navbar, Sidebar, Buttons, */
+    --color-secondary-values: 255, 111, 78; /* Hearth Fire Red */ /* Other Buttons, Tables, Modals, Cards, Lesser Components */
+    --color-info-values: 0, 171, 255; /* Cool Blue */ /* Info Color */
+    --color-remove-values: 255, 131, 96; /* Red */ /* Delete or Remove Color */
+    --color-positive-values: 125, 206, 130; /* Green */ /* Positive Values */
+    --color-negative-values: 255, 111, 78; /* Hearth Fire Red */ /* Negative Values */
+    --color-foreground-values: 252, 252, 252; /* Off White */ /* Page Color */
+    --color-background-values: 50, 50, 50; /* Black */ /* Text Color */
+    --color-offwhite-values: 237, 237, 237; /* Obligatory Offwhite value */
+    --color-warning-values: 232, 220, 0; /* Orange - Yellow */ /* Warning Color */
+    /* Color Implementation */
+    /* Background & Foreground */
+    --color-background: rgb(--color-foreground-values); /* White */ /* Blank Page */
+    --color-foreground: rgb(--color-background-values); /* Dark Gray (black) */ /* Text Color on BackGround */
+    /* Primary - Charcoal */
+    --color-primary: rgb(var(--color-primary-values));
+    --color-primary-faded: rgb(var(--color-primary-values), 0.5);
+    --color-primary-faded-2: rgb(var(--color-primary-values), 0.25);
+    --color-primary-faded-3: rgb(var(--color-primary-values), 0.13);
+    --color-primary-fg: rgb(252, 242, 240); /* Tan */ /* Text Color on Primary */
+    /* Secondary - Fire Red */
+    --color-secondary: rgb(var(--color-secondary-values));
+    --color-secondary-faded: rgb(var(--color-secondary-values), 0.5);
+    --color-secondary-faded-2: rgb(var(--color-secondary-values), 0.25);
+    --color-secondary-faded-3: rgb(var(--color-secondary-values), 0.13);
+    --color-secondary-fg: rgb(245, 245, 245); /* White */ /* Text Color on Secondary */
+    /* Info Color */
+    --color-info: rgb(var(--color-info-values));
+    --color-info-faded: rgb(var(--color-info-values), 0.5);
+    --color-info-faded-2: rgb(var(--color-info-values), 0.25);
+    --color-info-faded-3: rgb(var(--color-info-values), 0.13);
+    --color-info-fg: rgb(245, 245, 245);
+    /* Positive Color */
+    --color-positive: rgb(var(--color-positive-values));
+    --color-positive-faded: rgb(var(--color-positive-values), 0.5);
+    --color-positive-faded-2: rgb(var(--color-positive-values), 0.25);
+    --color-positive-faded-3: rgb(var(--color-positive-values), 0.13);
+    --color-positive-fg: rgb(245, 245, 245);
+    /* Negative Color */
+    --color-negative: rgb(var(--color-negative-values));
+    --color-negative-faded: rgb(var(--color-negative-values), 0.5);
+    --color-negative-faded-2: rgb(var(--color-negative-values), 0.25);
+    --color-negative-faded-3: rgb(var(--color-negative-values), 0.13);
+    --color-negative-fg: rgb(245, 245, 245);
+    /* --- Breakline Colors --- */
+    --color-breakline: rgb(var(--color-breakline-values));
+    --color-breakline-faded: rgb(var(--color-breakline-values), 0.5);
+    --color-breakline-faded-2: rgb(var(--color-breakline-values), 0.25);
+    --color-breakline-faded-3: rgb(var(--color-breakline-values), 0.13);
+    /* Border Colors */
+    --color-border: rgb(var(--color-border-values));
+    --color-border-faded: rgb(var(--color-border-values), 0.5);
+    --color-border-faded-2: rgb(var(--color-border-values), 0.25);
+    --color-border-faded-3: rgb(var(--color-border-values), 0.13);
+    /* Remove / Delete Colors */
+    --color-remove: rgb(var(--color-remove-values));
+    --color-remove-faded: rgb(var(--color-remove-values), 0.5);
+    --color-remove-faded-2: rgb(var(--color-remove-values), 0.25);
+    --color-remove-faded-3: rgb(var(--color-remove-values), 0.13);
+    --color-remove-fg: rgb(245, 245, 245);
+    /* Offwhite Misc*/
+    --color-offwhite: rgb(var(--color-offwhite-values));
+    --color-offwhite-faded: rgb(var(--color-offwhite-values), 0.5);
+    --color-offwhite-faded-2: rgb(var(--color-offwhite-values), 0.25);
+    --color-offwhite-faded-3: rgb(var(--color-offwhite-values), 0.13);
+    --color-offwhite-fg: rgb(31, 23, 21);
+    /* Toolbar Color */
+    --color-toolbar: rgb(var(--color-toolbar-values));
+    /* --- Spacing --- */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-4: 1rem;
+    /* --- Shape --- */
+    --radius-button: 0.8rem;
+    --radius-input: 0.7rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    /* --- Fonts --- */
+    --font-serif: "Bree Serif", serif;
+    --font-zain: "Zain", sans-serif;
+    /* REMOVE LIST */
+    --color-breakline-values: 255, 111, 78; /* REMOVE */
+    --color-border-values: 31, 23, 21; /* REMOVE */
+    --color-toolbar-values: 237, 237, 237; /* REMOVE */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    -webkit-text-size-adjust: 100%; /* prevents iOS from scaling text on orientation change */
+    -webkit-tap-highlight-color: transparent; /* removes the blue flash on tap (mobile) */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background)
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-zain);
+}
+
+img, video, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit; /* browsers reset form elements to their own font, this undoes that */
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

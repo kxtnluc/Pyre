@@ -1,0 +1,148 @@
+@namespace Pyre.Element.Input
+@using Pyre.Element.Form
+@typeparam TValue
+
+<div class="@WrapperClass">
+    <label class="input-label" for="@Id">@Label</label>
+    <input class="@ComputedClass"
+           id="@Id"
+           type="@_type"
+           value="@Value"
+           placeholder="@Placeholder"
+           disabled="@Disabled"
+           @oninput="HandleInput"
+           @attributes="AdditionalAttributes" />
+</div>
+
+@code {
+    // Base
+    [Parameter]
+    public string Label
+    {
+        get => _label ?? GetDefaultLabel();
+        set => _label = value;
+    }
+    [Parameter]
+    public string Placeholder
+    {
+        get => _placeholder ?? GetDefaultPlaceholder();
+        set => _placeholder = value;
+    }
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base {
+    [Parameter] public E_INPUT_TYPE InputType { get; set; } = E_INPUT_TYPE.Text;
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    // |
+    private string _type => InputType.ToString().ToLower();
+    private string _size => Size.ToString().ToLower();
+    // }
+    // Element Specific
+    [Parameter] public TValue? Value { get; set; }
+    [Parameter] public EventCallback<TValue?> ValueChanged { get; set; }
+    [Parameter] public EventCallback<TValue> OnChange { get; set; }
+    [Parameter] public string Id { get; set; } = Guid.NewGuid().ToString("N"); // This is so the label can be assigned properly
+    [Parameter] public RenderFragment? Icon { get; set; } // TODO
+    [CascadingParameter] public Form? ParentForm { get; set; }
+    // ===========================================================================================================
+    // Logic Handling
+    private async Task HandleInput(ChangeEventArgs e)
+    {
+        // Clear this field's error state as soon as the user starts typing
+        ParentForm?.InvalidFields.Remove(Label);
+
+        // Get the raw string value from the input event
+        var raw = e.Value?.ToString() ?? "";
+
+        // We need to convert the raw string into whatever type TValue is.
+        // Start with the default value for that type (null for strings, 0 for ints, etc.)
+        TValue? converted = default;
+
+        // Check what type TValue is and parse accordingly
+        switch (Type.GetTypeCode(typeof(TValue)))
+        {
+            case TypeCode.String:
+                // Strings don't need parsing, just cast directly
+                converted = (TValue?)(object?)raw;
+                break;
+
+            case TypeCode.Int32:
+                // Try to parse as an integer
+                if (int.TryParse(raw, out var n))
+                {
+                    converted = (TValue?)(object?)n;
+                }
+                // If parsing fails, converted stays as default (0)
+                break;
+
+            case TypeCode.Decimal:
+                // Try to parse as a decimal (used for currency, precise numbers)
+                if (decimal.TryParse(raw, out var d))
+                {
+                    converted = (TValue?)(object?)d;
+                }
+                break;
+
+            case TypeCode.Double:
+                // Try to parse as a double (used for floats, less precise than decimal)
+                if (double.TryParse(raw, out var db))
+                {
+                    converted = (TValue?)(object?)db;
+                }
+                break;
+
+            default:
+                // Unsupported type, converted stays as default
+                break;
+        }
+
+        // Fire the two-way binding update so @bind-Value stays in sync
+        await ValueChanged.InvokeAsync(converted);
+
+        // Fire the optional OnChange callback in case the parent wants to react to changes
+        await OnChange.InvokeAsync(converted);
+    }
+
+    private string? _placeholder;
+    private string GetDefaultPlaceholder()
+    {
+        return InputType switch
+        {
+            E_INPUT_TYPE.Text => "Default*",
+            E_INPUT_TYPE.Email => "john@example.com",
+            E_INPUT_TYPE.Tel => "(555) 555-5555",
+            E_INPUT_TYPE.Password => "••••••••",
+            E_INPUT_TYPE.Search => "Search",
+            E_INPUT_TYPE.Url => "http://example.com",
+            _ => ""
+        };
+    }
+
+    private string? _label;
+    private string GetDefaultLabel()
+    {
+        return InputType switch
+        {
+            E_INPUT_TYPE.Text => "Default*",
+            E_INPUT_TYPE.Email => "Email",
+            E_INPUT_TYPE.Tel => "Phone",
+            E_INPUT_TYPE.Password => "Password",
+            E_INPUT_TYPE.Search => "Search",
+            E_INPUT_TYPE.Url => "Url",
+            _ => ""
+        };
+    }
+
+    private bool HasError => ParentForm?.InvalidFields.Contains(Label) ?? false;
+    // ============================================================================================================
+    // Computed Classes & Styles
+    private string WrapperClass =>
+        $"input__wrapper input__wrapper--{_size}";
+
+    private string ComputedClass =>
+        $"input input--type--{_type} input--size--{_size} {(HasError ? "input--error" : "")}";
+
+    private string ComputedStyle =>
+        $"";
+}

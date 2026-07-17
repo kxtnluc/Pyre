@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Pyre.Dev/Pyre.Dev.csproj" Id="949d1708-5726-490b-b75b-0afdc5f384f3" />
+  <Project Path="Pyre.Element/Pyre.Element.csproj" />
+  <Project Path="Pyre.Test/Pyre.Test.csproj" />
+</Solution>

@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Package info -->
+		<PackageId>Pyre</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Juneau Studio</Authors>
+		<Description>Pyre ~ A Blazor Component Library</Description>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Folder Include="Elements\Card\Content\" />
+	  <Folder Include="Elements\Card\Footer\" />
+	  <Folder Include="Elements\Card\Header\Description\" />
+	  <Folder Include="Elements\Card\Header\Action\" />
+	  <Folder Include="Elements\Card\Header\Title\" />
+	  <Folder Include="Elements\Form\Footer\" />
+	  <Folder Include="Elements\Form\Header\Description\" />
+	  <Folder Include="Elements\Form\Header\Title\" />
+	  <Folder Include="wwwroot\fonts\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.10" />
+	</ItemGroup>
+
+	<!--
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.9" />
+	</ItemGroup>
+	-->
+</Project>

@@ -1,0 +1,40 @@
+@namespace Pyre.Element.Card
+@using Pyre.Element.Enums
+
+<div class="@ComputedWrapperClass" @attributes="AdditionalAttributes">
+    @if (IsDataPoint)
+    {
+        <div class="@ComputedClass">
+            @ChildContent
+        </div>
+    }
+    else
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base {
+    [Parameter] public E_STATUS DataStatus { get; set; } = E_STATUS.Neutral;
+    [Parameter] public bool IsDataPoint { get; set; } = false;
+    // |
+    private string _dataStatus => DataStatus.ToString().ToLower();
+    private string _isDataPoint => IsDataPoint.ToString().ToLower();
+    // }
+    // Element Specific
+    // ==========================================================================================================
+    // Computed Classes & Styles
+    public string ComputedWrapperClass =>
+        $"card__footer card--is--data--point--{_isDataPoint}";
+
+    public string ComputedClass =>
+        $"card--data--point card--data--status--{_dataStatus}";
+
+    public string ComputedStyle =>
+        $"";
+}

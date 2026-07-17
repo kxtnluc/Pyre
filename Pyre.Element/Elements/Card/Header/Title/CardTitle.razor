@@ -1,0 +1,28 @@
+@namespace Pyre.Element.Card
+
+<div class="card__title__container">
+    @if (Icon != null)
+    {
+        <span class="card--icon">@Icon</span>
+    }
+    <span class="@ComputedClass" @attributes="AdditionalAttributes">
+        @Title
+    </span>
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? Title { get; set; }
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    // Element Specific
+    // ==============================================================================================================
+    // Computed Classes & Styles
+    public string ComputedClass =>
+        $"card__title";
+
+    public string ComputedStyle =>
+        $"";
+}

@@ -1,0 +1,330 @@
+﻿@page "/"
+@using Pyre.Element.Button
+@using Pyre.Element.ClickWraper
+@using Pyre.Element.Icons
+@using Pyre.Element.Input
+@using Pyre.Element.Dropdown
+@using Pyre.Element.Form
+@using Pyre.Element.Card
+@using Pyre.Element.Modal
+@using Pyre.Element.Checkbox
+@rendermode InteractiveServer
+
+<PageTitle>Overview</PageTitle>
+
+<div class="overview-main">
+    <section class="button-section">
+        <div>
+            <h1>Buttons</h1>
+            <div>Button: @buttonText</div>
+        </div>
+        <div class="button-body">
+            <Button Variant="E_VARIANT.Primary">
+                Primary
+            </Button>
+
+            <Button Variant="E_VARIANT.Secondary">
+                Secondary
+            </Button>
+
+            <Button Variant="E_VARIANT.Outline" Size="E_SIZE.sm">
+                Outline + sm
+            </Button>
+
+            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">
+                Secondary + Offwhite
+            </Button>
+
+
+            <Button Variant="E_VARIANT.Unset" Size="E_SIZE.md">
+                Unset + md
+            </Button>
+
+            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove" Size="E_SIZE.lg">
+                Outline + Color Remove + lg
+                <TrashIcon />
+            </Button>
+
+            <Button Variant="E_VARIANT.Primary" OnClick="ButtonClick" Color="E_COLOR_BASIC.Secondary">
+                No Di + Color Secondary
+            </Button>
+
+            <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("DI Works!"))" Color="E_COLOR_BASIC.Info">
+                With Di + Color Info
+            </Button>
+            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Info">
+                Outline + Info
+            </Button>
+            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Warning">
+                Outline + Warning
+            </Button>
+            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove">
+                <TrashIcon />
+                Outline + Icon
+            </Button>
+        </div>
+    </section>
+
+    <section class="icon-section">
+        <div>
+            <h1>Icons</h1>
+        </div>
+        <div class="icon-frame">
+            <div class="icon">
+                <TrashIcon Size="50" />
+            </div>
+            <div class="icon">
+                <PlusIcon Size="50" />
+            </div>
+            <div class="icon">
+                <EditIcon Size="50" />
+            </div>
+            <div class="icon">
+                <GearIcon Size="50" />
+            </div>
+            <div class="icon">
+                <OpenWindowIcon Size="50" />
+            </div>
+            <div class="icon">
+                <HouseIcon Size="50" />
+            </div>
+            <div class="icon">
+                <PlusIcon Variant="E_PLUS_ICON.Folder" Size="50" />
+            </div>
+            <div class="icon">
+                <QuestionIcon Variant="E_QUESTION_ICON.Seal" Size="50" />
+            </div>
+        </div>
+    </section>
+
+    <section class="input-section">
+        <div>
+            <h1>Inputs</h1>
+            <div>Input: @inputText</div>
+        </div>
+        <div>
+            <div class="input-container">
+                <Input Label="Label Replaced!" InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" />
+                <Input InputType="E_INPUT_TYPE.Email" @bind-Value="inputText" />
+                <Input InputType="E_INPUT_TYPE.Password" @bind-Value="inputText" />
+                <Input Label="Googoogaagaa" InputType="E_INPUT_TYPE.Url" @bind-Value="inputText" />
+                <Input InputType="E_INPUT_TYPE.Search" @bind-Value="inputText" />
+                <Input InputType="E_INPUT_TYPE.Tel" @bind-Value="inputText" />
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div>
+            <h1>Form</h1>
+            @* <div>Form: @newBankPayload.Name + @newBankPayload.Country + @newBankPayload.State </div> *@
+        </div>
+        <div class="form-container">
+            <Form>
+                <FormHeader>
+                    <FormTitle>Crate Bank Account</FormTitle>
+                    <FormDescription>Manually enter bank account information to file transactions and cards under</FormDescription>
+                </FormHeader>
+                <FormContent>
+                    <FormRow>
+                        <FormCell Ratio="1">
+                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                        </FormCell>
+                    </FormRow>
+                    <FormRow>
+                        <FormCell Ratio="1/2">
+                            <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Account Number" Placeholder="4444000012349876" />
+                        </FormCell>
+                        <FormCell Ratio="1/2">
+                            <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Routing Number" Placeholder="4444000012349876" />
+                        </FormCell>
+                    </FormRow>
+                </FormContent>
+                <FormFooter>
+                    <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
+                    <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
+                </FormFooter>
+            </Form>
+        </div>
+        <div class="form-container">
+            <Form>
+                <FormHeader>
+                    <FormTitle>Bank Entity</FormTitle>
+                    <FormDescription>The entity that manages your accounts</FormDescription>
+                </FormHeader>
+                <FormContent>
+                    <FormRow>
+                        <FormCell Ratio="1/2">
+                            <Input Variant="INPUT_VARIANT.Default" Label="Name" @bind-Value="inputText" />
+                        </FormCell>
+                    </FormRow>
+                </FormContent>
+                <FormFooter>
+                    <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
+                    <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
+                </FormFooter>
+            </Form>
+        </div>
+    </section>
+
+    <section class="dropdown-section">
+        <div>
+            <h1>Dropdown</h1>
+            <div>Dropdown: @inputDropdown</div>
+        </div>
+        <div>
+            <div class="dropdown-container">
+                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" IncludeEmptyOption=true Label="Default" @bind-Value="@inputDropdown" />
+                <Dropdown Variant="E_DROPDOWN.Operations" @bind-Value="@inputDropdown" />
+                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" Label="Other" @bind-Value="@inputDropdown" />
+                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.sm" IncludeEmptyOption=true Label="Small" @bind-Value="@inputDropdown" />
+                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.lg" IncludeEmptyOption=true Label="Large" @bind-Value="@inputDropdown" />
+                <Dropdown Variant="E_DROPDOWN.StringOperations" @bind-Value="@inputDropdown" />
+            </div>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <div>
+            <h1>Cards & Click Wrapper</h1>
+            <div>Click: @buttonText</div>
+        </div>
+        <div class="card-container">
+            @* Simple card *@
+            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+                <Card Variant="E_CARD.Raised" HoverEffects="true">
+                    <CardHeader>
+                        <CardTitle>
+                            <Icon>
+                                <HouseIcon Size="22" />
+                            </Icon>
+                            <Title>East TN Home in the country and stuff like that</Title>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent IsDataPoint="true">$400,000</CardContent>
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral">
+                        $32,918
+                    </CardFooter>
+                </Card>
+            </ClickWraper>
+            ---
+            @* Full card with header and footer *@
+            <Card Variant="E_CARD.Flat">
+                <CardHeader>
+                    <CardTitle>
+                        <Icon>
+                            <GearIcon Size="28" />
+                        </Icon>
+                        <Title>
+                            Bank Settings
+                        </Title>
+                    </CardTitle>
+                    <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
+                </CardHeader>
+                <CardContent>cool card content</CardContent>
+                <CardFooter>Action</CardFooter>
+            </Card>
+            ---
+            <Card Variant="E_CARD.Raised">
+                <CardHeader>
+                    <CardTitle>
+                        <Icon>
+                            <OpenWindowIcon Size="28" />
+                        </Icon>
+                        <Title>
+                            Window or smth
+                        </Title>
+                    </CardTitle>
+                    <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
+                    <CardAction>
+                        <Button Color="E_COLOR_BASIC.Remove">Delete</Button>
+                    </CardAction>
+                </CardHeader>
+                <CardContent>coaweadwadt</CardContent>
+                <CardFooter>Action</CardFooter>
+            </Card>
+            ---
+            @* Inset card *@
+            <Card Variant="E_CARD.Inset">
+                <CardContent>Inset</CardContent>
+            </Card>
+        </div>
+    </section>
+
+    <section class="checkbox-section">
+        <div>
+            <h1>Checkbox</h1>
+            <div>Checked: @inputCheckbox</div>
+        </div>
+        <div class="checkbox-container">
+            <Checkbox @bind-Value="inputCheckbox" />
+            <Checkbox @bind-Value="inputCheckbox" />
+        </div>
+    </section>
+
+    <section class="modal-section">
+        <div>
+            <h1>Modal</h1>
+            <div>Modal: </div>
+        </div>
+        <div>
+            <div>
+                <Button Variant="E_VARIANT.Primary" OnClick="OpenModal">
+                    Open Modal
+                </Button>
+            </div>
+        </div>
+        <div class="modal-one">
+            <Modal Title="Modal One"
+                   Size="E_SIZE.md"
+                   Open="showModalOne"
+                   OnClose="CloseModal"
+                   HelpBtn="true"
+                   Variant="E_MODAL.AddEdit">
+                <div></div>
+            </Modal>
+        </div>
+        <div>
+            <div>
+                Bank Object To Edit
+                @* @bankObjectToEdit.Name + @bankObjectToEdit.Country + @bankObjectToEdit.State *@
+            </div>
+            <div>
+                <Button Variant="E_VARIANT.Primary" OnClick="OpenModalTwo">
+                    Open Modal Two
+                </Button>
+            </div>
+        </div>
+        <div class="modal-two">
+            <Modal Title="Edit Bank"
+                   Size="E_SIZE.lg"
+                   Open="showModalTwo"
+                   OnClose="CloseModalTwo"
+                   Variant="E_MODAL.AddEdit">
+                <Form>
+                    @* <FormHeader>
+                        <FormTitle>Bank Entity</FormTitle>
+                        <FormDescription>The entity that manages your accounts</FormDescription>
+                    </FormHeader> *@
+                    <FormContent>
+                        <FormRow>
+                            <FormCell Ratio="1/2">
+                                <Input Variant="INPUT_VARIANT.Default" Label="Name" @bind-Value="inputText" />
+                            </FormCell>
+                            <FormCell Ratio="1/4">
+                                <Dropdown Variant="E_DROPDOWN.Default" Label="Country" Options="@(["USA", "CAN", "MEX"])" @bind-Value="inputDropdown" />
+                            </FormCell>
+                            <FormCell Ratio="1/4">
+                                <Dropdown Variant="E_DROPDOWN.Default" Label="State" Options="@(["TN", "AK", "OR", "NY"])" @bind-Value="inputDropdown" />
+                            </FormCell>
+                        </FormRow>
+                    </FormContent>
+                    <FormFooter>
+                        <Button Variant="E_VARIANT.Secondary" Color="E_COLOR_BASIC.OffWhite" Onclick="CloseModalTwo">Cancel</Button>
+                        <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Info" Onclick="CloseModalTwo">Create</Button>
+                    </FormFooter>
+                </Form>
+            </Modal>
+        </div>
+    </section>
+</div>

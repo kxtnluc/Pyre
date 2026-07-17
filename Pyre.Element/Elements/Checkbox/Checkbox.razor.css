@@ -1,0 +1,44 @@
+/* This styling is very sensitive */
+/* Label container */
+.checkbox__wraper {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    gap: 8px;
+    cursor: pointer;
+}
+
+    /* Hide native checkbox */
+    .checkbox__wraper input[type="checkbox"] {
+        display: none;
+    }
+
+    /* Style the custom checkbox */
+    .checkbox__wraper .checkmark {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border: 2px solid var(--color-primary);
+        border-radius: 4px;
+        position: relative;
+        background-color: var(--color-background);
+        flex-shrink: 0;
+    }
+
+    /* Add checkmark when checked */
+    .checkbox__wraper input[type="checkbox"]:checked + .checkmark::after {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 4px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .checkbox__wraper input[type="checkbox"]:checked + .checkmark {
+        background-color: var(--color-info);
+        border-color: var(--color-info);
+    }

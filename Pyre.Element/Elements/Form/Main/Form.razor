@@ -1,0 +1,19 @@
+@namespace Pyre.Element.Form
+
+<CascadingValue Value="this">
+    <div class="form @Class">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Class { get; set; } = ""; // REMVOE
+    // Pyre Base
+    [Parameter] public E_FORM Variant { get; set; } = E_FORM.Add;
+    // Component Specific
+    public HashSet<string> InvalidFields { get; private set; } = new();
+    public string? ErrorMessage { get; private set; }
+    public string? SuccessMessage { get; private set; }
+}

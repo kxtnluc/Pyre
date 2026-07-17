@@ -1,0 +1,160 @@
+@namespace Pyre.Element.Dropdown
+@using Pyre.Element.Form
+@typeparam TValue
+
+<div class="@WrapperClass">
+    <label class="dropdown-label" for="@Id">@Label</label>
+    <select class="@ComputedClass"
+            id="@Id"
+            value="@Value"
+            disabled="@Disabled"
+            @onchange="HandleChange"
+            @attributes="AdditionalAttributes">
+        @if (IncludeEmptyOption)
+        {
+            <option class="option" value="">@EmptyOptionLabel</option>
+        }
+        @foreach (var item in Options)
+        {
+            <option class="option" value="@item">
+                @item
+            </option>
+        }
+    </select>
+</div>
+
+@code {
+    // Base
+    [Parameter] public TValue? Value { get; set; }
+    [Parameter] public EventCallback<TValue?> ValueChanged { get; set; }
+    [Parameter] public EventCallback<TValue?> OnChange { get; set; }
+    [Parameter] public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    [Parameter]
+    public string Label
+    {
+        get => _label ?? GetDefaultLabel();
+        set => _label = value;
+    }
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public E_DROPDOWN Variant { get; set; } = E_DROPDOWN.Default;
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    // |
+    private string _variant => Variant.ToString().ToLower();
+    private string _size => Size.ToString().ToLower();
+    // }
+    // Element Specific
+    [Parameter]
+    public string[] Options
+    {
+        get => _options ?? GetDefaultOptions();
+        set => _options = value;
+    }
+    [Parameter] public bool IncludeEmptyOption { get; set; } = false;
+    [Parameter] public string EmptyOptionLabel { get; set; } = "...";
+    [CascadingParameter] public Form? ParentForm { get; set; }
+    // ================================================================================================================
+    // Logic Handling
+    private async Task HandleChange(ChangeEventArgs e)
+    {
+        // Clear this field's error state as soon as the user changes the value
+        ParentForm?.InvalidFields.Remove(Label);
+
+        // Get the raw string value from the change event
+        var raw = e.Value?.ToString() ?? "";
+
+        // Convert the raw string into whatever type TValue is
+        TValue? converted = default;
+
+        switch (Type.GetTypeCode(typeof(TValue)))
+        {
+            case TypeCode.String:
+                converted = (TValue?)(object?)raw;
+                break;
+
+            case TypeCode.Int32:
+                if (int.TryParse(raw, out var n))
+                {
+                    converted = (TValue?)(object?)n;
+                }
+                break;
+
+            case TypeCode.Decimal:
+                if (decimal.TryParse(raw, out var d))
+                {
+                    converted = (TValue?)(object?)d;
+                }
+                break;
+
+            case TypeCode.Double:
+                if (double.TryParse(raw, out var db))
+                {
+                    converted = (TValue?)(object?)db;
+                }
+                break;
+
+            case TypeCode.Boolean:
+                // Handles "true"/"false" string values from the dropdown
+                if (bool.TryParse(raw, out var b))
+                {
+                    converted = (TValue?)(object?)b;
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        await ValueChanged.InvokeAsync(converted);
+        await OnChange.InvokeAsync(converted);
+    }
+    private bool HasError => ParentForm?.InvalidFields.Contains(Label) ?? false;
+
+    private string? _label;
+    private string GetDefaultLabel()
+    {
+        return Variant switch
+        {
+            E_DROPDOWN.Operations => "Operator",
+            E_DROPDOWN.StringOperations => "Match On",
+            _ => ""
+        };
+    }
+
+    private string[]? _options;
+    private string[] GetDefaultOptions()
+    {
+        return Variant switch
+        {
+            E_DROPDOWN.Operations => [
+                "=",
+                ">",
+                "<",
+                "≥",
+                "≤",
+                "≥ x ≤",
+                // "+/-"
+            ],
+            E_DROPDOWN.StringOperations => [
+                "Exact",
+                "Starts With",
+                "Ends With",
+                "Contains",
+                // "Resembles"
+            ],
+            _ => []
+        };
+    }
+    // ==========================================================================================================================
+    // Computed Classes & Styles
+    private string WrapperClass =>
+        $"dropdown__wrapper dropdown__wrapper--{_size}";
+
+    private string ComputedClass =>
+        $"dropdown dropdown--size--{_size} dropdown--variant--{_variant} {(HasError ? "dropdown--error" : "")}";
+
+    private string ComputeStyle =>
+        $"";
+}

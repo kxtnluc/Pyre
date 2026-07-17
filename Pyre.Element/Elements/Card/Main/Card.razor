@@ -1,0 +1,28 @@
+@namespace Pyre.Element.Card
+
+<div class="@ComputedClass" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base {
+    [Parameter] public E_CARD Variant { get; set; } = E_CARD.Raised;
+    [Parameter] public bool HoverEffects { get; set; } = false;
+    // |
+    private string _variant => Variant.ToString().ToLower();
+    private string _hoverEffects => HoverEffects.ToString().ToLower();
+    // }
+    // Element Specific
+
+    // =================================================================================================================
+    // Computed Classes & Styles
+    public string ComputedClass =>
+        $"card card--variant--{_variant} card--hover--{_hoverEffects}";
+
+    public string ComputedStyle =>
+    $"";
+}

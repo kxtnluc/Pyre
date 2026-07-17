@@ -1,0 +1,39 @@
+/* ---- Footer ---- */
+.card__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card--is--data--point--false {
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: blue;
+}
+
+.card--is--data--point--true {
+    justify-content: center;
+    gap: 1rem;
+    height: 2rem;
+}
+
+.card--data--point {
+    font-weight: 600;
+    background-color: var(--color-primary-faded-3);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.card--data--status--positive {
+    background-color: var(--color-positive-faded-3);
+    color: var(--color-positive);
+}
+
+.card--data--status--negative {
+    background-color: var(--color-secondary-faded-3);
+    color: var(--color-secondary);
+}

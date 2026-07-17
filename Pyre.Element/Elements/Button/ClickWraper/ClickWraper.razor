@@ -1,0 +1,10 @@
+@namespace Pyre.Element.ClickWraper
+<div @onclick="OnClick" style="cursor: pointer; display: contents;">
+    @ChildContent
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

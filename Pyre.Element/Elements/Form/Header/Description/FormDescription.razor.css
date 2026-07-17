@@ -1,0 +1,6 @@
+.form__description {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--color-primary-faded);
+    max-width: 50%;
+}
