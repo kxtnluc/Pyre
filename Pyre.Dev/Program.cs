@@ -1,4 +1,6 @@
 using Pyre.Dev.Components;
+using Microsoft.EntityFrameworkCore;
+using Pyre.Dev.Services;
 
 namespace Pyre.Dev
 {
@@ -11,6 +13,12 @@ namespace Pyre.Dev
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            // Database
+            builder.Services.AddDbContext<PyreDevDbContext>(options =>
+            options.UseSqlite("Data Source=Pyre.db"));
+
+            builder.Services.AddScoped<DatabaseService>();
 
             var app = builder.Build();
 

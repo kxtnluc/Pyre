@@ -1,0 +1,53 @@
+.toolbar-main {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 2.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--color-toolbar);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 20px;
+    gap: 0.75rem;
+    position: fixed;
+    right: 0; /* Default Positioning */
+    bottom: 0;
+    margin-right: 2.75rem;
+    margin-bottom: 2.25rem;
+    z-index: 10;
+    opacity: 0.75;
+    transition: opacity 200ms ease;
+}
+
+    .toolbar-main:hover {
+        opacity: 1;
+    }
+
+.toolbar--position--bottomright {
+    right: 0;
+    bottom: 0;
+    margin-right: 2.75rem;
+    margin-bottom: 2.25rem;
+}
+
+.toolbar--position--topright {
+    right: 0;
+    top: 0;
+    margin-right: 2.75rem;
+    margin-top: 2.25rem;
+}
+
+.tb-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    transition: 300ms ease;
+    padding: 0.25rem;
+}
+
+    .tb-btn:hover {
+        cursor: pointer;
+        background-color: var(--color-primary-faded-3);
+    }

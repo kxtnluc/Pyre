@@ -8,14 +8,14 @@
     --color-remove-values: 255, 131, 96; /* Red */ /* Delete or Remove Color */
     --color-positive-values: 125, 206, 130; /* Green */ /* Positive Values */
     --color-negative-values: 255, 111, 78; /* Hearth Fire Red */ /* Negative Values */
-    --color-foreground-values: 252, 252, 252; /* Off White */ /* Page Color */
-    --color-background-values: 50, 50, 50; /* Black */ /* Text Color */
+    --color-foreground-values: 50, 50, 50; /* Black */ /* Text Color */
+    --color-background-values: 252, 252, 252; /* Off White */ /* Page Color */
     --color-offwhite-values: 237, 237, 237; /* Obligatory Offwhite value */
     --color-warning-values: 232, 220, 0; /* Orange - Yellow */ /* Warning Color */
     /* Color Implementation */
     /* Background & Foreground */
-    --color-background: rgb(--color-foreground-values); /* White */ /* Blank Page */
-    --color-foreground: rgb(--color-background-values); /* Dark Gray (black) */ /* Text Color on BackGround */
+    --color-background: rgb(var(--color-background-values)); /* White */ /* Blank Page */
+    --color-foreground: rgb(var(--color-foreground-values)); /* Dark Gray (black) */ /* Text Color on BackGround */
     /* Primary - Charcoal */
     --color-primary: rgb(var(--color-primary-values));
     --color-primary-faded: rgb(var(--color-primary-values), 0.5);

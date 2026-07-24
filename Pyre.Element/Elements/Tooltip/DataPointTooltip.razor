@@ -1,0 +1,66 @@
+@namespace Pyre.Element.DataPointTooltip
+@using Pyre.Element.Enums
+
+<div class="@ComputedWrapperClass" style="@ComputedWrapperStyle">
+    @ChildContent
+    <div class="@ComputedClass"
+         style="@ComputedStyle">
+        <span class="dp__tooltip__text">@DataPoint</span>
+    </div>
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string DataPoint { get; set; } = "";
+    // Pyre Base
+    [Parameter] public E_DIRECTION_CARDINAL Position { get; set; } = E_DIRECTION_CARDINAL.Up;
+    [Parameter] public E_STATUS Variant { get; set; } = E_STATUS.Neutral;
+    // |
+    private string _position => Position.ToString().ToLower();
+    private string _variant => Variant.ToString().ToLower();
+    // }
+    // Element Specific
+    [Parameter] public int Offset { get; set; } = 8;
+    [Parameter] public bool ForCLG { get; set; } = false;
+    // |
+    private string _forCLG => ForCLG.ToString().ToLower();
+    private string _offset => Position switch
+    {
+        E_DIRECTION_CARDINAL.Up => $"bottom: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Down => $"top: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Left => $"right: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Right => $"left: calc(100% + {Offset}px);",
+        _ => ""
+    };
+    private string _borderColor => Variant switch
+    {
+        E_STATUS.Neutral => $"var(--color-primary-faded)",
+        E_STATUS.Positive => $"var(--color-positive-faded)",
+        E_STATUS.Negative => $"var(--color-secondary-faded)",
+        _ => ""
+    };
+    // Unused atm but might be implemented instead for the border color only
+    private string _color => Variant switch
+    {
+        E_STATUS.Neutral => $"var(--color-primary)",
+        E_STATUS.Positive => $"var(--color-positive)",
+        E_STATUS.Negative => $"var(--color-secondary)",
+        _ => ""
+    };
+    // ====================================================================================================================================
+    // Computed Classes & Styles
+    private string ComputedClass =>
+        $"dp__tooltip dp--tooltip--position--{_position}";
+
+    private string ComputedStyle =>
+        $"{_offset}; --offset: {Offset}px; --dp-border-color: {_color};";
+
+    // ====================================================================================================================================
+    // Computed Classes & Styles -- FOR WRAPPER
+    private string ComputedWrapperClass =>
+        $"dp__tooltip__wrapper dp--tooltip--wrapper--{_forCLG}";
+
+    private string ComputedWrapperStyle =>
+        $"--dp-color: {_color}";
+}

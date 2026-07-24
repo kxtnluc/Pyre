@@ -1,0 +1,39 @@
+@namespace Pyre.Element.Tooltip
+
+<div class="tooltip__wrapper">
+    @ChildContent
+    <div class="@ComputedClass" style="@ComputedStyle">
+        <span class="tooltip__text">@Text</span>
+    </div>
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Text { get; set; } = "";
+    // Pyre Base {
+    [Parameter] public E_DIRECTION_CARDINAL Position { get; set; } = E_DIRECTION_CARDINAL.Up;
+    // |
+    private string _position => Position.ToString().ToLower();
+    // }
+    // Element Specific
+    [Parameter] public int Offset { get; set; } = 8;
+
+    private string _offset => Position switch
+    {
+        E_DIRECTION_CARDINAL.Up => $"bottom: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Down => $"top: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Left => $"right: calc(100% + {Offset}px);",
+        E_DIRECTION_CARDINAL.Right => $"left: calc(100% + {Offset}px);",
+        _ => ""
+    };
+
+
+    // ====================================================================================================================================
+    // Computed Classes & Styles
+    private string ComputedClass => 
+        $"tooltip tooltip--position--{_position}";
+
+    private string ComputedStyle =>
+        $"{_offset}";
+}

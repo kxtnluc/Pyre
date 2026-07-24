@@ -1,0 +1,61 @@
+@namespace Pyre.Element.Toolbar
+@using Pyre.Element.Icons
+@using Pyre.Element.Tooltip
+
+<div class="@ComputedClass">
+    @if (HasAddBtn)
+    {
+        <Tooltip Text="@("Add" + TooltipSubject)" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-add-btn tb-btn" @onclick="OnAdd"><PlusIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
+    @if (HasManageBtn)
+    {
+        <Tooltip Text="@("Manage" + TooltipSubject + "s")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-manage-btn tb-btn" @onclick="OnManage"><EditIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
+    @if (HasSettingsBtn)
+    {
+        <Tooltip Text="@(TooltipSubject + " Settings")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-settings-btn tb-btn" @onclick="OnSettings"><GearIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
+</div>
+
+@code {
+    // Base
+    [Parameter] public bool HasAddBtn { get; set; } = true;
+    [Parameter] public bool HasManageBtn { get; set; } = true;
+    [Parameter] public bool HasSettingsBtn { get; set; } = true;
+
+    [Parameter] public EventCallback OnAdd { get; set; }
+    [Parameter] public EventCallback OnManage { get; set; }
+    [Parameter] public EventCallback OnSettings { get; set; }
+    // Pyre Base
+    [Parameter] public E_TOOLBAR_POSITION Position { get; set; } = E_TOOLBAR_POSITION.BottomRight;
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.lg;
+    // Element Specific
+    private string _tooltipSubject = string.Empty;
+    [Parameter] // If a value is passed, add blank space before it, otherwise set to empty string
+    public string TooltipSubject
+    {
+        get => _tooltipSubject;
+        set => _tooltipSubject = string.IsNullOrEmpty(value) ? string.Empty : " " + value;
+    }
+
+    // ==============================================================================================================================================
+    // Computed Classes & Styles
+    
+    private string ComputedClass =>
+    $"toolbar-main toolbar--position--{Position.ToString().ToLower()}";
+    
+    private int ComputedSize => Size switch
+    {
+        E_SIZE.sm => 16,
+        E_SIZE.md => 24,
+        E_SIZE.lg => 30,
+        E_SIZE.xl => 40,
+        _ => 24  // fallback to md
+    };
+}

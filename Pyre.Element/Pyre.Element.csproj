@@ -22,6 +22,8 @@
 	  <Folder Include="Elements\Form\Footer\" />
 	  <Folder Include="Elements\Form\Header\Description\" />
 	  <Folder Include="Elements\Form\Header\Title\" />
+	  <Folder Include="Elements\Graph\ConsumptionLineGraph\" />
+	  <Folder Include="Elements\Tooltip\" />
 	  <Folder Include="wwwroot\fonts\" />
 	</ItemGroup>
 
