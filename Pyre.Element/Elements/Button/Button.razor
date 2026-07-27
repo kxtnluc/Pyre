@@ -20,12 +20,12 @@
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
     // Pyre Base {
     [Parameter] public E_VARIANT Variant { get; set; } = E_VARIANT.Primary;
-    [Parameter] public E_STATUS Status { get; set; } = E_STATUS.Neutral;
+    // [Parameter] public E_STATUS Status { get; set; } = E_STATUS.Neutral;
     [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
     [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
     // |
     private string _variant => Variant.ToString().ToLower();
-    private string _status => Status.ToString().ToLower();
+    // private string _status => Status.ToString().ToLower();
     private string _size => Size.ToString().ToLower();
     private string _color => Color.ToString().ToLower();
     // }
