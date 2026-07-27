@@ -8,11 +8,38 @@
 @using Pyre.Element.Card
 @using Pyre.Element.Modal
 @using Pyre.Element.Checkbox
+@using Pyre.Element.Tooltip
+@using Pyre.Element.DataPointTooltip
+@using Pyre.Element.Toolbar
+@using Pyre.Element.Graphs
 @rendermode InteractiveServer
 
 <PageTitle>Overview</PageTitle>
 
 <div class="overview-main">
+
+     <section class="toolbar-section">
+        <div>
+            @* This element doesn't need to be anywhere specific, as its position is absolute *@
+            <Toolbar OnAdd="OpenModal"
+                     OnManage="OpenModalTwo"
+                     Position="E_TOOLBAR_POSITION.BottomRight"
+                     Size="E_SIZE.md"
+                     TooltipSubject="Bank" />
+        </div>
+    </section>
+
+    <section class="consumption-line-graph-section">
+        <div>
+            <h1>Line Consumption Graph</h1>
+        </div>
+        <div class="lgc-graph-container">
+            <ConsumptionLineGraph />
+            <ConsumptionLineGraph Variant="E_STATUS.Negative" />
+            <ConsumptionLineGraph Variant="E_STATUS.Neutral" />
+        </div>
+    </section>
+
     <section class="button-section">
         <div>
             <h1>Buttons</h1>
@@ -325,6 +352,67 @@
                     </FormFooter>
                 </Form>
             </Modal>
+        </div>
+    </section>
+
+    <section class="tooltip-section">
+        <div>
+            <h1>Tooltips</h1>
+        </div>
+        <div class="icon-frame">
+            <Tooltip Text="Over Div" Position="E_DIRECTION_CARDINAL.Down">
+                <div class="icon">
+                    <TrashIcon Size="24" />
+                </div>
+            </Tooltip>
+            <div class="icon">
+                <Tooltip Text="Over Icon" Position="E_DIRECTION_CARDINAL.Down">
+                    <PlusIcon Size="24" />
+                </Tooltip>
+            </div>
+            <Tooltip Text="Over Div Left" Position="E_DIRECTION_CARDINAL.Left">
+                <div class="icon">
+                    <TrashIcon Size="24" />
+                </div>
+            </Tooltip>
+            <Tooltip Text="Over Div R" Position="E_DIRECTION_CARDINAL.Right">
+                <div class="icon">
+                    <TrashIcon Size="24" />
+                </div>
+            </Tooltip>
+            <Tooltip Text="Over Div T" Position="E_DIRECTION_CARDINAL.Up">
+                <div class="icon">
+                    <TrashIcon Size="24" />
+                </div>
+            </Tooltip>
+        </div>
+    </section>
+
+    <section class="data-tooltip-section">
+        <div>
+            <h1>Data Point Tooltip</h1>
+        </div>
+        <div class="data-point-tooltip-container">
+            <Card>
+                <CardHeader>
+                    <CardTitle>
+                        <Title>
+                            Data Point Tooltip!
+                        </Title>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <DataPointTooltip DataPoint="$500">
+                        This is some cool content :D
+                    </DataPointTooltip>
+                    <DataPointTooltip DataPoint="$500" Variant="E_STATUS.Positive">
+                        Pos
+                    </DataPointTooltip>
+                    <DataPointTooltip Position="E_DIRECTION_CARDINAL.Right" DataPoint="$500" Variant="E_STATUS.Negative">
+                        Neg
+                    </DataPointTooltip>
+                </CardContent>
+            </Card>
         </div>
     </section>
 </div>

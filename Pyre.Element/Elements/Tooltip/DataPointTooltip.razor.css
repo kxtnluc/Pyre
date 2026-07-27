@@ -1,0 +1,133 @@
+/* This element version is only used for Consumption Line Graphs */
+.dp--tooltip--wrapper--true {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+
+.dp--tooltip--wrapper--false {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dp__tooltip {
+    position: absolute;
+    z-index: 50;
+    padding: 0.475rem 0.925rem;
+    background: var(--color-background);
+    color: var(--dp-color);
+    border: 3px solid var(--dp-border-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 150ms ease 0ms, visibility 150ms ease 0ms; /* ← the last value is the delay */
+}
+
+.dp__tooltip__wrapper:hover .dp__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 150ms ease 600ms, visibility 150ms ease 600ms;
+}
+
+/* Invisible bridge that fills the gap between the trigger and tooltip */
+/* so the cursor doesn't pass through empty space and hide the tooltip */
+.dp__tooltip::before {
+    content: "";
+    position: absolute;
+}
+
+.dp--tooltip--position--up::before {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--offset, 8px) + 12px); /* covers the gap + arrow */
+}
+
+.dp--tooltip--position--down::before {
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--offset, 8px) + 12px);
+}
+
+.dp--tooltip--position--left::before {
+    left: 100%;
+    top: 0;
+    height: 100%;
+    width: calc(var(--offset, 8px) + 12px);
+}
+
+.dp--tooltip--position--right::before {
+    right: 100%;
+    top: 0;
+    height: 100%;
+    width: calc(var(--offset, 8px) + 12px);
+}
+
+/* --- Positions --- */
+.dp--tooltip--position--up {
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dp--tooltip--position--down {
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dp--tooltip--position--left {
+    right: calc(100% + 0.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dp--tooltip--position--right {
+    left: calc(100% + 0.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* --- Arrow --- */
+.dp__tooltip::after {
+    content: "";
+    position: absolute;
+    border: 9px solid transparent;
+}
+
+.dp--tooltip--position--up::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--dp-border-color);
+}
+
+.dp--tooltip--position--down::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: var(--dp-border-color);
+}
+
+.dp--tooltip--position--left::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: var(--dp-border-color);
+}
+
+.dp--tooltip--position--right::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: var(--dp-border-color);
+}

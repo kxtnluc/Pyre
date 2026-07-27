@@ -1,0 +1,68 @@
+@namespace Pyre.Element.Graphs
+@using Pyre.Element.Enums
+@using Pyre.Element.DataPointTooltip
+
+<div class="consumption__line__graph__container">
+	@for (int i = 0; i < DataSet.Count; i++)
+	{
+		var dataPoint = DataSet.ElementAt(i);
+		var width = ((decimal)dataPoint.Value / _whole) * 100;
+		var color = GetGradientColor(i, DataSet.Count);
+		var localIndex = i; // capture loop variable
+
+
+			<div class="clg__data__point @(localIndex == 0 ? "clg__data__point__first" : localIndex == DataSet.Count - 1 ? "clg__data__point__last" : "")"
+				 style="width: @(width.ToString("F2"))%; background-color: @color; color: @color;">
+				<DataPointTooltip DataPoint="@dataPoint.Value.ToString("F2")"
+							  Variant="@Variant"
+							  Position="E_DIRECTION_CARDINAL.Up"
+								ForCLG="true"
+				>
+				-
+				</DataPointTooltip>
+			</div>
+	}
+</div>
+
+@code {
+	// Base
+	[Parameter]
+	public Dictionary<string, double> DataSet { get; set; } = new Dictionary<string, double>
+	{
+		// This is just for example sake. Do not use
+		// Data Key and Value. The values are relative to the whole. So since total is 2000, i've labeled Quarter as 500
+		{ "1", 5341}, { "2", 1211 },  { "3", 3281 }, { "4", 3281 }, { "5", 2222 }, { "6", 5738 }
+	};
+	private decimal _whole => (decimal)DataSet.Values.Sum();
+	// Pyre Base
+	[Parameter] public E_STATUS Variant { get; set; } = E_STATUS.Positive;
+	// Element Specific
+	private string GetGradientColor(int index, int total)
+	{
+
+		var darkColor = (r: 31, g: 23, b: 21);
+		var lightColor = (r: 235, g: 235, b: 235);
+
+		if(Variant == E_STATUS.Positive)
+		{
+			darkColor = (r: 125, g: 206, b: 130);  
+			lightColor = (r: 190, g: 240, b: 220); 
+		}
+		else if (Variant == E_STATUS.Negative)
+		{
+			darkColor = (r: 255, g: 111, b: 78);
+			lightColor = (r: 255, g: 161, b: 138);
+		}
+
+		// If only one datapoint, just return dark green
+		if (total <= 1) return $"rgb({darkColor.r},{darkColor.g},{darkColor.b})";
+
+		double t = (double)index / (total - 1); // 0.0 at first, 1.0 at last
+
+		int r = (int)(darkColor.r + t * (lightColor.r - darkColor.r));
+		int g = (int)(darkColor.g + t * (lightColor.g - darkColor.g));
+		int b = (int)(darkColor.b + t * (lightColor.b - darkColor.b));
+
+		return $"rgb({r},{g},{b})";
+	}
+}
