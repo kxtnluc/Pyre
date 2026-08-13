@@ -1,0 +1,138 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden; /* prevents content from spilling out when collapsed */
+    z-index: 100;
+    /* ===== WIDTH =====
+       This is the main value to change for sidebar width.
+       To open/close the sidebar, transition between this value and the collapsed width below.
+       Default open width: 16rem
+       Default closed width: 3.5rem (just enough to show icons) or 0 to fully hide */
+    width: 16rem;
+    transition: width 250ms ease; /* smooth open/close animation */
+    background-color: var(--color-primary);
+    color: var(--color-offwhite);
+}
+
+/* Add this class via Blazor to collapse the sidebar */
+.sidebar--collapsed {
+    width: 3.5rem; /* icon-only width — set to 0 to fully hide */
+}
+
+.sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    flex-shrink: 0;
+    /* header will clip naturally as sidebar narrows — 
+       hide the label text when collapsed by targeting .sidebar--collapsed .sidebar__header */
+    color: white;
+
+    .sidebar__header__label {
+        font-size: 1.23rem;
+    }
+
+    .sidebar__toggle__button {
+        transition: 150ms;
+        border-radius: var(--radius-lg);
+        padding: 0.3rem;
+    }
+
+    .sidebar__toggle__button:hover {
+        background-color: var(--color-secondary-faded-3);
+    }
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.sidebar__link.active .sidebar__tab {
+    background-color: var(--color-secondary-faded);
+}
+
+.sidebar__tab__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*    background-color: orange;*/
+    width: 100%;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.sidebar__tab {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+/*    border: red 1px dashed;*/
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    white-space: nowrap; /* prevents label text from wrapping during collapse transition */
+    overflow: hidden; /* clips label text as sidebar narrows */
+    transition: background-color 150ms;
+    padding: 0.5rem 0.3rem;
+}
+
+.sidebar__tab:hover{
+    background-color: var(--color-secondary-faded-3);
+}
+
+.sidebar__tab__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0; /* icon never shrinks — always visible even when collapsed */
+}
+
+.sidebar__tab__label{
+    font-weight: 700;
+    align-self: center;
+}
+
+/* Active tab — styled by Blazor's NavLink automatically */
+.sidebar__link.active {
+    /* add your active styles here */
+}
+
+/* When collapsed, hide the label text and header label */
+.sidebar--collapsed .sidebar__tab__label,
+.sidebar--collapsed .sidebar__header a {
+    opacity: 0; /* fades out — alternatively use display:none to instantly hide */
+    transition: opacity 200ms ease;
+}
+
+/* Footer */
+.sidebar__footer {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    margin-top: auto; /* ← pushes footer to the bottom of the sidebar */
+    border-top: 1px solid var(--color-primary-faded-2);
+}
+
+.sidebar__action__item {
+    cursor: pointer;
+    background-color: var(--color-info-faded-2);
+    border-radius: var(--radius-md);
+}
+
+.sidebar__tab__action__item {
+/*    border: var(--color-info-faded) 2px dashed;*/
+    justify-content: center;
+    transition: background-color 150ms;
+}
+
+    .sidebar__tab__action__item:hover {
+        background-color: var(--color-info-faded);
+    }
