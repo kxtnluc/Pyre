@@ -23,6 +23,9 @@
 	  <Folder Include="Elements\Form\Header\Description\" />
 	  <Folder Include="Elements\Form\Header\Title\" />
 	  <Folder Include="Elements\Graph\ConsumptionLineGraph\" />
+	  <Folder Include="Elements\Header\" />
+	  <Folder Include="Elements\Navbar\NavBarSide\" />
+	  <Folder Include="Elements\Navbar\NavBarTop\" />
 	  <Folder Include="Elements\Tooltip\" />
 	  <Folder Include="wwwroot\fonts\" />
 	</ItemGroup>

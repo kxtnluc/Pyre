@@ -1,0 +1,89 @@
+@namespace Pyre.Element.Navbar
+@using Pyre.Element.ClickWraper
+@using Pyre.Element.Icons
+
+
+<div class="sidebar">
+    <div class="sidebar__header">
+        <a class="sidebar__header__label" href="">@Label</a>
+        <div class="sidebar__toggle__button">
+            <ClickWraper OnClick="Toggle">
+                <div><SidebarIcon Size="26"/></div>
+            </ClickWraper>
+        </div>
+    </div>
+
+    <nav class="sidebar__nav">
+        @foreach (var tab in Sidebar.MainTabs)
+        {
+            <NavLink class="sidebar__link" href="@tab.Url" Match="NavLinkMatch.All">
+                <div class="sidebar__tab__container">
+                    <div class="sidebar__tab">
+                        @* There will always be an icon *@
+                        <span class="sidebar__tab__icon">@tab.Icon</span>
+                    
+                        <span class="sidebar__tab__label">@tab.Label</span>
+                    </div>
+                </div>
+            </NavLink>
+        }
+    </nav>
+
+    @* Footer sits at the bottom *@
+    <div class="sidebar__footer">
+        @if (Sidebar.ActionItem != null)
+        {
+
+            <div class="sidebar__tab__container sidebar__action__item">
+                <ClickWraper OnClick="HandleActionItem">
+                    <div class="sidebar__tab sidebar__tab__action__item">
+                        <span class="sidebar__tab__icon">@Sidebar.ActionItem.Icon</span>
+                        <span class="sidebar__tab__label">@Sidebar.ActionItem.Label</span>
+                    </div>
+                </ClickWraper>
+            </div>
+        }
+
+        <nav>
+            @foreach (var tab in Sidebar.FooterTabs)
+            {
+                <NavLink class="sidebar__link" href="@tab.Url" Match="NavLinkMatch.All">
+                    <div class="sidebar__tab__container">
+                        <div class="sidebar__tab">
+                            <span class="sidebar__tab__icon">@tab.Icon</span>
+                            <span class="sidebar__tab__label">@tab.Label</span>
+                        </div>
+                    </div>
+                </NavLink>
+            }
+        </nav>
+    </div>
+</div>
+
+@code{
+    // Base
+    [Parameter] public bool Open { get; set; } = false;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    [Parameter] public string Label { get; set; } = "Pyre";
+    [Parameter] public EventCallback OnToggle { get; set; }
+    // Pyre Base {
+    [Parameter] public bool Closeable { get; set; } = true;
+    [Parameter] public SidebarPyre Sidebar { get; set; } = default!;
+    // |
+    private string _closeable => Closeable.ToString().ToLower();
+    private bool _collapsed = false;
+
+    public async Task Toggle()
+    {
+        _collapsed = !_collapsed;
+        await OnToggle.InvokeAsync();
+    }
+
+    private async Task HandleActionItem()
+    {
+        if (Sidebar.ActionItem?.CallbackAction != null)
+            await Sidebar.ActionItem.CallbackAction.InvokeAsync();
+    }
+
+}
