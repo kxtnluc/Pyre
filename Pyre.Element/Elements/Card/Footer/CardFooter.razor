@@ -22,18 +22,20 @@
     // Pyre Base {
     [Parameter] public E_STATUS DataStatus { get; set; } = E_STATUS.Neutral;
     [Parameter] public bool IsDataPoint { get; set; } = false;
+    [Parameter] public E_DIRECTION_LATERAL LateralDirection { get; set; } = E_DIRECTION_LATERAL.Center;
     // |
     private string _dataStatus => DataStatus.ToString().ToLower();
     private string _isDataPoint => IsDataPoint.ToString().ToLower();
+    private string _lateralDirection => LateralDirection.ToString().ToLower();
     // }
     // Element Specific
     // ==========================================================================================================
     // Computed Classes & Styles
     public string ComputedWrapperClass =>
-        $"card__footer card--is--data--point--{_isDataPoint}";
+        $"card__footer card--is--data--point--{_isDataPoint} card--wraper--lateral--direction--{_lateralDirection}";
 
     public string ComputedClass =>
-        $"card--data--point card--data--status--{_dataStatus}";
+        $"card--data--point card--data--status--{_dataStatus} card--lateral--direction--{_lateralDirection}";
 
     public string ComputedStyle =>
         $"";

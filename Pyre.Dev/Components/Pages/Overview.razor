@@ -261,8 +261,40 @@
                         </CardTitle>
                     </CardHeader>
                     <CardContent IsDataPoint="true">$400,000</CardContent>
-                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral">
-                        $32,918
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Center">
+                        Center
+                    </CardFooter>
+                </Card>
+            </ClickWraper>
+            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+                <Card Variant="E_CARD.Raised" HoverEffects="true">
+                    <CardHeader>
+                        <CardTitle>
+                            <Icon>
+                                <HouseIcon Size="22" />
+                            </Icon>
+                            <Title>East TN Home in the country and stuff like that</Title>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent IsDataPoint="true">$400,000</CardContent>
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Right">
+                        Right
+                    </CardFooter>
+                </Card>
+            </ClickWraper>
+            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+                <Card Variant="E_CARD.Inset" HoverEffects="true">
+                    <CardHeader>
+                        <CardTitle>
+                            <Icon>
+                                <HouseIcon Size="22" />
+                            </Icon>
+                            <Title>East TN Home in the country and stuff like that</Title>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent IsDataPoint="true">$400,000</CardContent>
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Left">
+                        Left
                     </CardFooter>
                 </Card>
             </ClickWraper>
