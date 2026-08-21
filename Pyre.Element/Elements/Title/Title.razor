@@ -1,0 +1,30 @@
+﻿@namespace Pyre.Element.Title
+
+<div class="@ComputedClasses" style="@ComputedStyles">
+    @if (Icon != null)
+    {
+        <span class="title__icon">@Icon</span>
+    }
+    <span class="title__text">@ChildContent</span>
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
+    // Element Specific
+    [Parameter] public RenderFragment? Icon { get; set; }
+    // |
+    private string _size => Size.ToString().ToLower();
+    private string _color => Color.ToString().ToLower();
+
+    private string ComputedClasses =>
+        $"title title--{_size}";
+
+    private string ComputedStyles =>
+        $"color: var(--color-{_color});";
+}

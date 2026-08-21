@@ -5,8 +5,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    overflow-y: auto;
-    overflow-x: hidden; /* prevents content from spilling out when collapsed */
     z-index: 100;
     /* ===== WIDTH =====
        This is the main value to change for sidebar width.
@@ -21,7 +19,7 @@
 
 /* Add this class via Blazor to collapse the sidebar */
 .sidebar--collapsed {
-    width: 3.5rem; /* icon-only width — set to 0 to fully hide */
+    width: 3.8rem; /* icon-only width — set to 0 to fully hide */
 }
 
 .sidebar__header {
@@ -33,20 +31,43 @@
     /* header will clip naturally as sidebar narrows — 
        hide the label text when collapsed by targeting .sidebar--collapsed .sidebar__header */
     color: white;
+    overflow: visible;
 
     .sidebar__header__label {
         font-size: 1.23rem;
+        transition: 150ms;
+        border-radius: var(--radius-lg);
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
     }
 
+        .sidebar__header__label:hover {
+            background-color: var(--color-secondary-faded-2);
+        }
+
     .sidebar__toggle__button {
+        flex-shrink: 0;
         transition: 150ms;
         border-radius: var(--radius-lg);
         padding: 0.3rem;
+        padding-top: 0.5rem;
     }
 
-    .sidebar__toggle__button:hover {
-        background-color: var(--color-secondary-faded-3);
-    }
+        .sidebar__toggle__button:hover {
+            background-color: var(--color-secondary-faded-3);
+        }
+}
+
+.sidebar--collapsed .sidebar__header {
+    justify-content: center; /* ← center the toggle when label is hidden */
+    padding: 1rem 0.5rem;
+}
+
+.sidebar--collapsed .sidebar__header__label {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    padding: 0;
 }
 
 .sidebar__nav {
@@ -54,6 +75,8 @@
     flex-direction: column;
     flex: 1;
     padding: 0.5rem;
+    overflow-y: auto;
+    overflow-x: visible;
 }
 
 .sidebar__link.active .sidebar__tab {
@@ -64,7 +87,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*    background-color: orange;*/
+/*        background-color: orange;*/
     width: 100%;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -76,7 +99,7 @@
     display: flex;
     width: 100%;
     gap: 1rem;
-/*    border: red 1px dashed;*/
+    /*    border: red 1px dashed;*/
     border-radius: var(--radius-md);
     text-decoration: none;
     white-space: nowrap; /* prevents label text from wrapping during collapse transition */
@@ -85,9 +108,9 @@
     padding: 0.5rem 0.3rem;
 }
 
-.sidebar__tab:hover{
-    background-color: var(--color-secondary-faded-3);
-}
+    .sidebar__tab:hover {
+        background-color: var(--color-secondary-faded-3);
+    }
 
 .sidebar__tab__icon {
     display: inline-flex;
@@ -95,7 +118,7 @@
     flex-shrink: 0; /* icon never shrinks — always visible even when collapsed */
 }
 
-.sidebar__tab__label{
+.sidebar__tab__label {
     font-weight: 700;
     align-self: center;
 }
@@ -105,11 +128,22 @@
     /* add your active styles here */
 }
 
-/* When collapsed, hide the label text and header label */
-.sidebar--collapsed .sidebar__tab__label,
-.sidebar--collapsed .sidebar__header a {
-    opacity: 0; /* fades out — alternatively use display:none to instantly hide */
-    transition: opacity 200ms ease;
+/* Action item icon should never hide when collapsed */
+.sidebar--collapsed .sidebar__action__item .sidebar__tab__icon {
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+/* Hide the action item label when collapsed */
+.sidebar--collapsed .sidebar__action__item .sidebar__tab__label {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Center the action item content when collapsed */
+.sidebar--collapsed .sidebar__tab__action__item {
+    justify-content: start;
 }
 
 /* Footer */
@@ -128,7 +162,7 @@
 }
 
 .sidebar__tab__action__item {
-/*    border: var(--color-info-faded) 2px dashed;*/
+    /*    border: var(--color-info-faded) 2px dashed;*/
     justify-content: center;
     transition: background-color 150ms;
 }
