@@ -15,6 +15,12 @@
             <button class="tb-manage-btn tb-btn" @onclick="OnManage"><EditIcon Size=@ComputedSize /></button>
         </Tooltip>
     }
+    @if (HasSearchBtn)
+    {
+        <Tooltip Text="@("Search for" + TooltipSubject + "s")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-search-btn tb-btn" @onclick="OnSearch"><SearchIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
     @if (HasSettingsBtn)
     {
         <Tooltip Text="@(TooltipSubject + " Settings")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
@@ -28,10 +34,12 @@
     [Parameter] public bool HasAddBtn { get; set; } = true;
     [Parameter] public bool HasManageBtn { get; set; } = true;
     [Parameter] public bool HasSettingsBtn { get; set; } = true;
+    [Parameter] public bool HasSearchBtn { get; set; } = false;
 
     [Parameter] public EventCallback OnAdd { get; set; }
     [Parameter] public EventCallback OnManage { get; set; }
     [Parameter] public EventCallback OnSettings { get; set; }
+    [Parameter] public EventCallback OnSearch { get; set; }
     // Pyre Base
     [Parameter] public E_TOOLBAR_POSITION Position { get; set; } = E_TOOLBAR_POSITION.BottomRight;
     [Parameter] public E_SIZE Size { get; set; } = E_SIZE.lg;

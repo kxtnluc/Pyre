@@ -12,6 +12,7 @@
         Label="Pyre2" 
         OnToggle="HandleToggle"
         Sidebar="Sidebar"    
+        Collapsed="_collapsed"
     />
     
     <main class="layout__main">
@@ -33,6 +34,7 @@
         Label="Pyre2" 
         OnToggle="HandleToggle"
         Sidebar="Sidebar"    
+        Collapsed="_collapsed"
     />
     
     <main class="layout__main">
@@ -47,7 +49,6 @@
     <span class="dismiss">🗙</span>
 </div>
 
-@code {
 ```
 ```csharp
     private bool _collapsed = false;
@@ -83,7 +84,7 @@
 
     private void VeryCoolAction()
     {
-        test = "Very cool action executed!";
+        test = "!";
     }
 ```
 
@@ -101,15 +102,15 @@
 
 /* When sidebar is collapsed */
 .layout--collapsed .layout__main {
-    margin-left: 3.5rem;
-    width: calc(100% - 3.5rem);
+    margin-left: 3.8rem;
+    width: calc(100% - 3.8rem);
 }
 ```
 
 ## Variable Examples
 
 ```csharp
-    private bool _collapsed = false;
+        private bool _collapsed = false;
     private void HandleToggle() => _collapsed = !_collapsed;
 
     private string test = "Hello World";
@@ -142,7 +143,7 @@
 
     private void VeryCoolAction()
     {
-        test = "Very cool action executed!";
+        test = "!";
     }
 ```
 

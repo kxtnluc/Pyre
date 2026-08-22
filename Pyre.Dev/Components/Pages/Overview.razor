@@ -8,6 +8,7 @@
 @using Pyre.Element.Card
 @using Pyre.Element.Modal
 @using Pyre.Element.Checkbox
+@using Pyre.Element.Title
 @using Pyre.Element.Tooltip
 @using Pyre.Element.DataPointTooltip
 @using Pyre.Element.Toolbar
@@ -18,7 +19,38 @@
 
 <div class="overview-main">
 
+    <section class="title-section">
+        <div>
+            <h1>Title</h1>
+        </div>
+        <div>
+            <Title Size="E_SIZE.lg" Color="E_COLOR_BASIC.Secondary">
+                Bank Overview
+            </Title>
+
+            <Title Size="E_SIZE.xl">
+                <Icon><HouseIcon Size="28" /></Icon>
+                <ChildContent>Dashboard</ChildContent>
+            </Title>
+            <Title Size="E_SIZE.md" Color="E_COLOR_BASIC.Info">
+                <Icon><OpenWindowIcon Size="28" /></Icon>
+                <ChildContent>Med</ChildContent>
+            </Title>
+            <Title Size="E_SIZE.sm" Color="E_COLOR_BASIC.Warning">
+                <Icon><TrashIcon Size="28" /></Icon>
+                <ChildContent>Small Warning</ChildContent>
+            </Title>
+            <Title Size="E_SIZE.xs">
+                <Icon><BookmarkIcon Size="28" /></Icon>
+                <ChildContent>Extra Small</ChildContent>
+            </Title>
+        </div>
+    </section>
+
      <section class="toolbar-section">
+        <div>
+            <h1>Toolbar</h1>
+        </div>
         <div>
             @* This element doesn't need to be anywhere specific, as its position is absolute *@
             <Toolbar OnAdd="OpenModal"
@@ -229,8 +261,40 @@
                         </CardTitle>
                     </CardHeader>
                     <CardContent IsDataPoint="true">$400,000</CardContent>
-                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral">
-                        $32,918
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Center">
+                        Center
+                    </CardFooter>
+                </Card>
+            </ClickWraper>
+            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+                <Card Variant="E_CARD.Raised" HoverEffects="true">
+                    <CardHeader>
+                        <CardTitle>
+                            <Icon>
+                                <HouseIcon Size="22" />
+                            </Icon>
+                            <Title>East TN Home in the country and stuff like that</Title>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent IsDataPoint="true">$400,000</CardContent>
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Right">
+                        Right
+                    </CardFooter>
+                </Card>
+            </ClickWraper>
+            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+                <Card Variant="E_CARD.Inset" HoverEffects="true">
+                    <CardHeader>
+                        <CardTitle>
+                            <Icon>
+                                <HouseIcon Size="22" />
+                            </Icon>
+                            <Title>East TN Home in the country and stuff like that</Title>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent IsDataPoint="true">$400,000</CardContent>
+                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Left">
+                        Left
                     </CardFooter>
                 </Card>
             </ClickWraper>

@@ -16,3 +16,4 @@
 | [Toolbar](components/toolbar.md) |                          [x] | [x] | - |             - |
 | [ClickWrapper](components/clickwrapper.md) |                     [x] | [x] | - |             - |
 | [DataPointTooltip](components/datapointtooltip.md) |                 [x] |  -  | - |             - |
+| [Sidebar](components/sidebar.md) |                -  | - | - | SidebarPyre |

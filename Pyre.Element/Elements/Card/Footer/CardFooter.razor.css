@@ -12,9 +12,20 @@
 }
 
 .card--is--data--point--true {
-    justify-content: center;
     gap: 1rem;
     height: 2rem;
+}
+
+.card--wraper--lateral--direction--center {
+    justify-content: center;
+}
+
+.card--wraper--lateral--direction--left {
+    justify-content: flex-start;
+}
+
+.card--wraper--lateral--direction--right {
+    justify-content: flex-end;
 }
 
 .card--data--point {
@@ -36,4 +47,12 @@
 .card--data--status--negative {
     background-color: var(--color-secondary-faded-3);
     color: var(--color-secondary);
+}
+
+.card--lateral--direction--left {
+    border-top-left-radius: 0;
+}
+
+.card--lateral--direction--right {
+    border-top-right-radius: 0;
 }

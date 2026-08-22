@@ -1,14 +1,19 @@
 @namespace Pyre.Element.Navbar
 @using Pyre.Element.ClickWraper
 @using Pyre.Element.Icons
+@using Pyre.Element.Tooltip
 
 
-<div class="sidebar">
+<div class="sidebar @(_collapsed ? "sidebar--collapsed" : "")">
     <div class="sidebar__header">
         <a class="sidebar__header__label" href="">@Label</a>
         <div class="sidebar__toggle__button">
             <ClickWraper OnClick="Toggle">
-                <div><SidebarIcon Size="26"/></div>
+                <div>
+                    <Tooltip Text="Toggle Sidebar" Position="E_DIRECTION_CARDINAL.Right">
+                        <SidebarIcon Size="26" />
+                    </Tooltip>
+                </div>
             </ClickWraper>
         </div>
     </div>
@@ -21,7 +26,7 @@
                     <div class="sidebar__tab">
                         @* There will always be an icon *@
                         <span class="sidebar__tab__icon">@tab.Icon</span>
-                    
+
                         <span class="sidebar__tab__label">@tab.Label</span>
                     </div>
                 </div>
@@ -60,7 +65,7 @@
     </div>
 </div>
 
-@code{
+@code {
     // Base
     [Parameter] public bool Open { get; set; } = false;
     [Parameter(CaptureUnmatchedValues = true)]
@@ -69,10 +74,16 @@
     [Parameter] public EventCallback OnToggle { get; set; }
     // Pyre Base {
     [Parameter] public bool Closeable { get; set; } = true;
+    [Parameter] public bool Collapsed { get; set; } = false;
     [Parameter] public SidebarPyre Sidebar { get; set; } = default!;
     // |
     private string _closeable => Closeable.ToString().ToLower();
     private bool _collapsed = false;
+
+    protected override void OnParametersSet()
+    {
+        _collapsed = Collapsed; // ← keep in sync with parent
+    }
 
     public async Task Toggle()
     {
