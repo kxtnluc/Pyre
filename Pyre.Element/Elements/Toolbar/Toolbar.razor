@@ -9,6 +9,12 @@
             <button class="tb-add-btn tb-btn" @onclick="OnAdd"><PlusIcon Size=@ComputedSize /></button>
         </Tooltip>
     }
+    @if (HasLinkBtn)
+    {
+        <Tooltip Text="@("Link" + TooltipSubject)" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-add-btn tb-btn" @onclick="OnLink"><LinkIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
     @if (HasManageBtn)
     {
         <Tooltip Text="@("Manage" + TooltipSubject + "s")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
@@ -32,11 +38,13 @@
 @code {
     // Base
     [Parameter] public bool HasAddBtn { get; set; } = true;
+    [Parameter] public bool HasLinkBtn { get; set; } = true;
     [Parameter] public bool HasManageBtn { get; set; } = true;
     [Parameter] public bool HasSettingsBtn { get; set; } = true;
     [Parameter] public bool HasSearchBtn { get; set; } = false;
 
     [Parameter] public EventCallback OnAdd { get; set; }
+    [Parameter] public EventCallback OnLink { get; set; }
     [Parameter] public EventCallback OnManage { get; set; }
     [Parameter] public EventCallback OnSettings { get; set; }
     [Parameter] public EventCallback OnSearch { get; set; }
