@@ -6,6 +6,12 @@
         <span class="card--content--data--point--text">@ChildContent</span>
     </div>
 }
+else if (IsForm)
+{
+    <div class="@ComputedClass" @attributes="AdditionalAttributes">
+        <span class="card--content--form--text">@ChildContent</span>
+    </div>
+}
 else
 {
     <div class="@ComputedClass" @attributes="AdditionalAttributes">
@@ -13,19 +19,22 @@ else
     </div>
 }
 
-@code {
+            @code {
     // Base
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
     // Pyre Base
     [Parameter] public bool IsDataPoint { get; set; } = false;
+    [Parameter] public bool IsForm { get; set; }
+    // |
     private string _isDataPoint => IsDataPoint.ToString().ToLower();
+    private string _isForm => IsForm.ToString().ToLower();
     // Element Specific
     // ================================================================================================================
     // Computed Classes & Styles
     public string ComputedClass =>
-        $"card--content--data--point--{_isDataPoint}";
+        $"card--content card--content--data--point--{_isDataPoint} card--content--form--{_isForm}";
 
     public string ComputedStyle =>
     $"";
