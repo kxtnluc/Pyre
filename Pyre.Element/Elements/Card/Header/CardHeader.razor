@@ -1,6 +1,6 @@
 @namespace Pyre.Element.Card
 
-<div class="@ComputedClass" @attributes="AdditionalAttributes">
+<div class="@ComputedClass" @attributes="FilteredAttributes">
     @ChildContent
 </div>
 
@@ -9,12 +9,22 @@
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    public Dictionary<string, object>? FilteredAttributes =>
+    AdditionalAttributes?
+        .Where(a => a.Key != "class")
+        .ToDictionary(a => a.Key, a => a.Value);
     // Pyre Base
     // Element Specific
     // ==============================================================================================================
     // Computed Classes & Styles
-    public string ComputedClass =>
-        $"card__header";
+    public string ComputedClass
+    {
+        get
+        {
+            var additionalClass = AdditionalAttributes?.GetValueOrDefault("class")?.ToString() ?? "";
+            return $"card__header {additionalClass}".Trim();
+        }
+    }
 
     public string ComputedStyle =>
         $"";
