@@ -1,41 +1,21 @@
 @namespace Pyre.Element.Card
 
-@if (IsDataPoint)
-{
-    <div class="@ComputedClass" @attributes="AdditionalAttributes">
-        <span class="card--content--data--point--text">@ChildContent</span>
-    </div>
-}
-else if (IsForm)
-{
-    <div class="@ComputedClass" @attributes="AdditionalAttributes">
-        <span class="card--content--form--text">@ChildContent</span>
-    </div>
-}
-else
-{
-    <div class="@ComputedClass" @attributes="AdditionalAttributes">
-        <span class="card--content--normal--text">@ChildContent</span>
-    </div>
-}
+<div class="@ComputedClass" style="@ComputedStyle" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
 
-            @code {
+@code {
     // Base
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
     // Pyre Base
-    [Parameter] public bool IsDataPoint { get; set; } = false;
-    [Parameter] public bool IsForm { get; set; }
+    [Parameter] public E_CARD_CONTENT Variant { get; set; } = E_CARD_CONTENT.Default;
     // |
-    private string _isDataPoint => IsDataPoint.ToString().ToLower();
-    private string _isForm => IsForm.ToString().ToLower();
-    // Element Specific
+    private string _variant => Variant.ToString().ToLower();
     // ================================================================================================================
-    // Computed Classes & Styles
-    public string ComputedClass =>
-        $"card--content card--content--data--point--{_isDataPoint} card--content--form--{_isForm}";
+    private string ComputedClass =>
+        $"card__content card__content--{_variant}";
 
-    public string ComputedStyle =>
-    $"";
+    private string ComputedStyle => "";
 }

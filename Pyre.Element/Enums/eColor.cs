@@ -15,6 +15,6 @@ namespace Pyre.Element.Enums
         Background,
         Foreground,
         OffWhite,
-        Warning
+        Warning,
     }
 }

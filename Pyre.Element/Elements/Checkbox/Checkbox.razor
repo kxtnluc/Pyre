@@ -8,7 +8,7 @@
     <span class="checkmark"></span>
     @if (!string.IsNullOrEmpty(Label))
     {
-        <span>@Label</span>
+        <span class="checkbox__label">@Label</span>
     }
 </label>
 
@@ -19,7 +19,11 @@
     [Parameter] public EventCallback<bool> ValueChanged { get; set; }
     // Pyre Base
     [Parameter] public bool Editable { get; set; } = true;
+    [Parameter] public bool FlipLabel { get; set; } = false;
     [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Info; // TODO
+    // |
+    private string _flipLabel => FlipLabel.ToString().ToLower();
+    private string _color => Color.ToString().ToLower();
     // Element Specific
     // ==============================================================================================================
     // Logic Handling
@@ -31,7 +35,7 @@
     // ==============================================================================================================
     // Computed Classes & Styles
     public string ComputedWraperClass =>
-        $"checkbox__wraper";
+        $"checkbox__wraper checkbox__wraper--flipped--{_flipLabel}";
 
     public string ComputedStyle =>
         $"";

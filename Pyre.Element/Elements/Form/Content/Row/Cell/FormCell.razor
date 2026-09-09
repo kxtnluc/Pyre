@@ -1,12 +1,20 @@
 @namespace Pyre.Element.Form
 
-<div class="form__cell" style="flex: @FlexValue">
+<div class="@ComputedClass" style="flex: @FlexValue">
     @ChildContent
 </div>
 
 @code {
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public string Ratio { get; set; } = "1/2";
+    [Parameter] public bool CenterVertically { get; set; } = false;
+    [Parameter] public bool AlignRight { get; set; } = false;
+    [Parameter] public bool AlignCenter { get; set; } = false;
+    // |
+    private string _centerVertically => CenterVertically.ToString().ToLower();
+    private string _alignRight => AlignRight.ToString().ToLower();
+    private string _alignCenter => AlignCenter.ToString().ToLower();
+
 
     private string FlexValue
     {
@@ -22,4 +30,7 @@
             return "1"; // fallback to equal width
         }
     }
+
+    public string ComputedClass =>
+    $"form__cell form--vertical--center--{_centerVertically} form--horizontal--center--{_alignCenter} form--horizontal--right--{_alignRight}";
 }

@@ -42,3 +42,9 @@
 .lgc-graph-container {
     width: 35rem;
 }
+
+.line-break-container{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+}

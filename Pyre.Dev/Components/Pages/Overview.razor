@@ -13,6 +13,7 @@
 @using Pyre.Element.DataPointTooltip
 @using Pyre.Element.Toolbar
 @using Pyre.Element.Graphs
+@using Pyre.Element.LineBreak
 @rendermode InteractiveServer
 
 <PageTitle>Overview</PageTitle>
@@ -47,7 +48,7 @@
         </div>
     </section>
 
-     <section class="toolbar-section">
+    <section class="toolbar-section">
         <div>
             <h1>Toolbar</h1>
         </div>
@@ -69,6 +70,26 @@
             <ConsumptionLineGraph />
             <ConsumptionLineGraph Variant="E_STATUS.Negative" />
             <ConsumptionLineGraph Variant="E_STATUS.Neutral" />
+        </div>
+    </section>
+
+    <section class="line-break-section">
+        <div>
+            <h1>Line Breaks</h1>
+        </div>
+        <div class="line-break-container">
+            <div>
+                <LineBreak />
+            </div>
+            <div>
+                <LineBreak Size="E_SIZE.md" Color="E_COLOR_BASIC.Secondary" />
+            </div>
+            <div>
+                <LineBreak Width="50%" HexColor="#ff6f4e" Size="E_SIZE.lg" />
+            </div>
+            <div>
+                <LineBreak Width="4rem" Size="E_SIZE.xl" Color="E_COLOR_BASIC.Info" />
+            </div>
         </div>
     </section>
 
@@ -186,16 +207,24 @@
                 </FormHeader>
                 <FormContent>
                     <FormRow>
-                        <FormCell Ratio="1">
+                        <FormCell Ratio="4/6">
                             <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                        </FormCell>
+                        <FormCell Ratio="2/6" CenterVertically="true" AlignRight="true">
+                            <Checkbox FlipLabel="true" Label="Check Box" />
                         </FormCell>
                     </FormRow>
                     <FormRow>
-                        <FormCell Ratio="1/2">
+                        <FormCell Ratio="2/5">
                             <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Account Number" Placeholder="4444000012349876" />
                         </FormCell>
-                        <FormCell Ratio="1/2">
+                        <FormCell Ratio="2/5">
                             <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Routing Number" Placeholder="4444000012349876" />
+                        </FormCell>
+                        <FormCell Ratio="1/5">
+                            <div class="form-checkbox-test">
+                                <Checkbox Label="Unflip" />
+                            </div>
                         </FormCell>
                     </FormRow>
                 </FormContent>

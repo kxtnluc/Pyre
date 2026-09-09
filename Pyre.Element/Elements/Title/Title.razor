@@ -16,15 +16,16 @@
     // Pyre Base
     [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
     [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
+    [Parameter] public string HexColor { get; set; } = "";
     // Element Specific
     [Parameter] public RenderFragment? Icon { get; set; }
     // |
     private string _size => Size.ToString().ToLower();
-    private string _color => Color.ToString().ToLower();
+    private string _color => HexColor == string.Empty ? ($"var(--color-{Color.ToString().ToLower()})") : (HexColor);
 
     private string ComputedClasses =>
         $"title title--{_size}";
 
     private string ComputedStyles =>
-        $"color: var(--color-{_color});";
+        $"color: {_color}";
 }

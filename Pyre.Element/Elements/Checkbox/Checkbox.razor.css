@@ -42,3 +42,11 @@
         background-color: var(--color-info);
         border-color: var(--color-info);
     }
+
+.checkbox--label {
+    order: 0; /* default: label after checkmark */
+}
+
+.checkbox__wraper--flipped--true .checkbox__label {
+    order: -1; /* moves label before checkmark visually */
+}

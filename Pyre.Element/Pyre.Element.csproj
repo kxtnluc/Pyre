@@ -14,7 +14,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Elements\Card\Content\" />
 	  <Folder Include="Elements\Card\Footer\" />
 	  <Folder Include="Elements\Card\Header\Description\" />
 	  <Folder Include="Elements\Card\Header\Action\" />

@@ -1,0 +1,38 @@
+﻿@namespace Pyre.Element.Icons
+
+@switch (DirectionPoint)
+{
+    case E_DIRECTION_EIGHT_POINT.Up:
+        <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor"><path d="M18.427,4.911,14.508.992a3.583,3.583,0,0,0-4.95,0L5.639,4.911A1.5,1.5,0,0,0,7.76,7.032l2.78-2.78.023,18.25a1.5,1.5,0,0,0,1.5,1.5h0a1.5,1.5,0,0,0,1.5-1.5L13.54,4.266l2.766,2.766a1.5,1.5,0,1,0,2.121-2.121Z" /></svg>
+        break;
+    case E_DIRECTION_EIGHT_POINT.Down:
+        // TODO
+        break;
+    case E_DIRECTION_EIGHT_POINT.Left:
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor"><path d="M22.5,10.5H7v-3.587c0-.811-.994-1.218-1.575-.644L.27,11.356c-.36,.356-.36,.932,0,1.288l5.154,5.087c.581,.574,1.575,.167,1.575-.644v-3.587h15.5c.828,0,1.5-.671,1.5-1.5s-.672-1.5-1.5-1.5Z" /></svg>
+        break;
+    case E_DIRECTION_EIGHT_POINT.Right:
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor" style="transform: scaleX(-1);"><path d="M22.5,10.5H7v-3.587c0-.811-.994-1.218-1.575-.644L.27,11.356c-.36,.356-.36,.932,0,1.288l5.154,5.087c.581,.574,1.575,.167,1.575-.644v-3.587h15.5c.828,0,1.5-.671,1.5-1.5s-.672-1.5-1.5-1.5Z" /></svg>
+        break;
+    case E_DIRECTION_EIGHT_POINT.UpRight:
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor"><path d="M19.5,0H10.5c-.828,0-1.5,.671-1.5,1.5s.672,1.5,1.5,1.5h8.379L.439,21.439c-.586,.585-.586,1.536,0,2.121,.293,.293,.677,.439,1.061,.439s.768-.146,1.061-.439L21,5.121V13.5c0,.829,.672,1.5,1.5,1.5s1.5-.671,1.5-1.5V4.5c0-2.481-2.019-4.5-4.5-4.5Z" /></svg>
+        break;
+    case E_DIRECTION_EIGHT_POINT.UpLeft:
+        break;
+    case E_DIRECTION_EIGHT_POINT.DownRight:
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor"
+             style="transform: scaleX(-1);">
+            <path d="M23.56,2.56L5.12,21H13.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5H4.5c-2.48,0-4.5-2.02-4.5-4.5V10.5c0-.83,.67-1.5,1.5-1.5s1.5,.67,1.5,1.5v8.38L21.44,.44c.59-.59,1.54-.59,2.12,0s.59,1.54,0,2.12Z" />
+        </svg>
+        break;
+    case E_DIRECTION_EIGHT_POINT.DownLeft:
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="@Size" height="@Size" fill="currentColor"><path d="M23.56,2.56L5.12,21H13.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5H4.5c-2.48,0-4.5-2.02-4.5-4.5V10.5c0-.83,.67-1.5,1.5-1.5s1.5,.67,1.5,1.5v8.38L21.44,.44c.59-.59,1.54-.59,2.12,0s.59,1.54,0,2.12Z" /></svg>
+        break;
+    default:
+        break;
+}
+
+@code {
+    [Parameter] public int Size { get; set; } = 16;
+    [Parameter] public E_DIRECTION_EIGHT_POINT DirectionPoint { get; set; } = E_DIRECTION_EIGHT_POINT.Up;
+}

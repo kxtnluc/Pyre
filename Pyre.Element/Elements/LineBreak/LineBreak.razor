@@ -1,0 +1,23 @@
+﻿@namespace Pyre.Element.LineBreak
+
+<div class="line__break line__break--@_size" style="@ComputedStyles"></div>
+
+@code {
+    // Base
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.sm;
+    [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
+    [Parameter] public string HexColor { get; set; } = "";
+    // Element Specific
+    [Parameter] public string Width { get; set; } = "100%";
+    // |
+    private string _size => Size.ToString().ToLower();
+    private string _color => HexColor == string.Empty
+        ? $"var(--color-{Color.ToString().ToLower()}-faded)"
+        : HexColor;
+
+    private string ComputedStyles =>
+        $"background-color: {_color}; width: {Width};";
+}

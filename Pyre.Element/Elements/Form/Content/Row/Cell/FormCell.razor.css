@@ -1,3 +1,16 @@
 .form__cell {
     min-width: 0;
+/*    background-color: lightgoldenrodyellow;*/
+
+}
+
+.form--vertical--center--true {
+    align-self: center;
+}
+
+.form--horizontal--center--true{
+    text-align: center;
+}
+.form--horizontal--right--true {
+    text-align: right;
 }

@@ -1,0 +1,25 @@
+.line__break {
+    border-radius: 999px; /* fully rounded ends */
+    flex-shrink: 0;
+}
+
+/* Thickness via Size */
+.line__break--xs {
+    height: 1px;
+}
+
+.line__break--sm {
+    height: 2px;
+}
+
+.line__break--md {
+    height: 4px;
+}
+
+.line__break--lg {
+    height: 6px;
+}
+
+.line__break--xl {
+    height: 10px;
+}
