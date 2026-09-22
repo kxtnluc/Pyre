@@ -1,0 +1,20 @@
+.progress__bar__wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 999px;
+    overflow: hidden; /* clips children to the rounded ends */
+}
+
+.pb--complete {
+    height: 100%;
+    border-radius: 999px 0 0 999px; /* rounds only the left end */
+    transition: width 400ms ease;
+}
+
+.pb--incomplete {
+    height: 100%;
+    border-radius: 0 999px 999px 0; /* rounds only the right end */
+    transition: width 400ms ease;
+}

@@ -1,0 +1,37 @@
+﻿@namespace Pyre.Element.ProgressBar
+
+<div class="progress__bar__wrapper" style="@ComputedWraperStyle">
+    <div class="pb--complete" style="@ComputedCompleteStyle"></div>
+    <div class="pb--incomplete" style="@ComputedIncompleteStyle"></div>
+</div>
+
+@code {
+    // Base
+    [Parameter] public decimal Complete { get; set; } = 0m;
+    [Parameter] public decimal Total { get; set; } = 100m;
+    // Pyre Base
+    [Parameter] public E_COLOR_BASIC CompleteColor { get; set; } = E_COLOR_BASIC.Primary;
+    [Parameter] public E_COLOR_BASIC IncompleteColor { get; set; } = E_COLOR_BASIC.OffWhite;
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.sm;
+    // Element Specific
+    private decimal CompletePercent => Total == 0 ? 0 : Math.Clamp((Complete / Total) * 100, 0, 100);
+    private decimal IncompletePercent => 100 - CompletePercent;
+    private decimal _size => Size switch
+    {
+        E_SIZE.xs => 0.35m,
+        E_SIZE.sm => 0.5m,
+        E_SIZE.md => 0.75m,
+        E_SIZE.lg => 1m,
+        E_SIZE.xl => 1.5m,
+        _ => 0.5m
+    };
+
+    private string ComputedWraperStyle =>
+        $"height: {_size.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)}rem;";
+
+    private string ComputedCompleteStyle =>
+        $"width: {CompletePercent.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)}%; background-color: var(--color-{CompleteColor.ToString().ToLower()});";
+
+    private string ComputedIncompleteStyle =>
+        $"width: {IncompletePercent.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)}%; background-color: var(--color-{IncompleteColor.ToString().ToLower()});";
+}

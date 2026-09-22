@@ -14,6 +14,7 @@
 @using Pyre.Element.Toolbar
 @using Pyre.Element.Graphs
 @using Pyre.Element.LineBreak
+@using Pyre.Element.ProgressBar
 @rendermode InteractiveServer
 
 <PageTitle>Overview</PageTitle>
@@ -26,7 +27,6 @@
         </div>
         <div>
             <Title Size="E_SIZE.lg" Color="E_COLOR_BASIC.Secondary">
-                Bank Overview
             </Title>
 
             <Title Size="E_SIZE.xl">
@@ -59,6 +59,31 @@
                      Position="E_TOOLBAR_POSITION.BottomRight"
                      Size="E_SIZE.md"
                      TooltipSubject="Bank" />
+        </div>
+    </section>
+
+    <section class="progress-bar-section">
+        <div>
+            <h1>Progress Bar</h1>
+        </div>
+        <div class="pb-container">
+            @* 40% complete *@
+            <ProgressBar Complete="40" Total="100" />
+
+            @* custom colors *@
+            <ProgressBar Complete="750" Total="1000"
+                         Size="E_SIZE.md"
+                         CompleteColor="E_COLOR_BASIC.Info"
+                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
+
+            <ProgressBar Complete="750" Total="1000"
+                         Size="E_SIZE.lg"
+                         CompleteColor="E_COLOR_BASIC.Info"
+                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
+            <ProgressBar Complete="750" Total="1000"
+                         Size="E_SIZE.xl"
+                         CompleteColor="E_COLOR_BASIC.Info"
+                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
         </div>
     </section>
 
@@ -286,7 +311,7 @@
                             <Icon>
                                 <HouseIcon Size="22" />
                             </Icon>
-                            <Title>East TN Home in the country and stuff like that</Title>
+                            <Text>East TN Home in the country and stuff like that</Text>
                         </CardTitle>
                     </CardHeader>
                     <CardContent IsDataPoint="true">$400,000</CardContent>
@@ -302,7 +327,7 @@
                             <Icon>
                                 <HouseIcon Size="22" />
                             </Icon>
-                            <Title>East TN Home in the country and stuff like that</Title>
+                            <Text>East TN Home in the country and stuff like that</Text>
                         </CardTitle>
                     </CardHeader>
                     <CardContent IsDataPoint="true">$400,000</CardContent>
@@ -318,7 +343,7 @@
                             <Icon>
                                 <HouseIcon Size="22" />
                             </Icon>
-                            <Title>East TN Home in the country and stuff like that</Title>
+                            <Text>East TN Home in the country and stuff like that</Text>
                         </CardTitle>
                     </CardHeader>
                     <CardContent IsDataPoint="true">$400,000</CardContent>
@@ -335,9 +360,9 @@
                         <Icon>
                             <GearIcon Size="28" />
                         </Icon>
-                        <Title>
+                        <Text>
                             Bank Settings
-                        </Title>
+                        </Text>
                     </CardTitle>
                     <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
                 </CardHeader>
@@ -351,9 +376,9 @@
                         <Icon>
                             <OpenWindowIcon Size="28" />
                         </Icon>
-                        <Title>
+                        <Text>
                             Window or smth
-                        </Title>
+                        </Text>
                     </CardTitle>
                     <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
                     <CardAction>
