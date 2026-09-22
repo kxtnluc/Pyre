@@ -1,9 +1,9 @@
 @namespace Pyre.Element.Tooltip
 
-<div class="tooltip__wrapper">
-    @ChildContent
+<div class="@ComputedWraperClass">
+    <span class="@ComputedLabelClass">@ChildContent</span>
     <div class="@ComputedClass" style="@ComputedStyle">
-        <span class="tooltip__text">@Text</span>
+        <span class="@ComputedTextClass">@Text</span>
     </div>
 </div>
 
@@ -13,8 +13,10 @@
     [Parameter] public string Text { get; set; } = "";
     // Pyre Base {
     [Parameter] public E_DIRECTION_CARDINAL Position { get; set; } = E_DIRECTION_CARDINAL.Up;
+    [Parameter] public bool HoverEffects { get; set; } = true;
     // |
     private string _position => Position.ToString().ToLower();
+    private string _hover => HoverEffects.ToString().ToLower();
     // }
     // Element Specific
     [Parameter] public int Offset { get; set; } = 8;
@@ -31,9 +33,17 @@
 
     // ====================================================================================================================================
     // Computed Classes & Styles
+    private string ComputedWraperClass =>
+        $"tooltip__wrapper";
     private string ComputedClass => 
         $"tooltip tooltip--position--{_position}";
 
     private string ComputedStyle =>
         $"{_offset}";
+
+    private string ComputedTextClass =>
+        $"tooltip__text";
+
+    private string ComputedLabelClass =>
+        $"tooltip--hover--{_hover}";
 }

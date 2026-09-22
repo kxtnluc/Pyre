@@ -15,11 +15,24 @@
     font-size: 0.75rem;
     font-weight: 500;
     border-radius: var(--radius-md);
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 180px; /* ← controls wrap point */
+    width: max-content; /* ← stays narrow when text is short */
+    text-align: center;
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 150ms ease 0ms, visibility 150ms ease 0ms; /* ← the last value is the delay */
+}
+
+.tooltip--hover--true {
+    transition: opacity 150ms ease;
+    cursor: none;
+}
+
+.tooltip--hover--true:hover{
+    opacity: 0.8;
 }
 
 .tooltip__wrapper:hover .tooltip {

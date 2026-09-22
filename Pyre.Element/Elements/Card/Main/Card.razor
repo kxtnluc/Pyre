@@ -1,6 +1,6 @@
 @namespace Pyre.Element.Card
 
-<div class="@ComputedClass" @attributes="AdditionalAttributes">
+<div class="@ComputedClass" style="@ComputedStyle" @attributes="AdditionalAttributes">
     @ChildContent
 </div>
 
@@ -11,7 +11,14 @@
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
     // Pyre Base {
     [Parameter] public E_CARD Variant { get; set; } = E_CARD.Raised;
+    /// <summary>
+    /// Toggles the hover effects of the card element
+    /// </summary>
     [Parameter] public bool HoverEffects { get; set; } = false;
+    /// <summary>
+    /// Set to "visible" if tooltips or other overlay elements are having issues rendering/getting cut-off by the card. Otherwise leave as hidden
+    /// </summary>
+    [Parameter] public string Overflow { get; set; } = "hidden";
     // |
     private string _variant => Variant.ToString().ToLower();
     private string _hoverEffects => HoverEffects.ToString().ToLower();
@@ -24,5 +31,5 @@
         $"card card--variant--{_variant} card--hover--{_hoverEffects}";
 
     public string ComputedStyle =>
-    $"";
+    $"overflow: {Overflow};";
 }
