@@ -1,0 +1,31 @@
+﻿@namespace Pyre.Element.Button
+
+<button class="@ComputedClass"
+        @onclick="OnClick"
+        disabled="@Disabled"
+        @attributes="AdditionalAttributes"
+        style="@ComputedStyle">
+    @ChildContent
+</button>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    [Parameter] public E_COLOR_BASIC Color { get; set; } = E_COLOR_BASIC.Primary;
+    // Element Specific
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public EventCallback OnClick { get; set; }
+    // |
+    private string _size => Size.ToString().ToLower();
+    private string _color => Color.ToString().ToLower();
+
+    private string ComputedClass =>
+        $"btn--icon-only btn--icon-only--{_size}";
+
+    private string ComputedStyle =>
+        $"color: var(--color-{_color});";
+}

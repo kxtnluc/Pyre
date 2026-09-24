@@ -1,0 +1,46 @@
+.btn--icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: background-color 150ms ease;
+    line-height: 0; /* prevents extra height from line spacing */
+}
+
+    .btn--icon-only:hover {
+        background-color: color-mix(in srgb, currentColor 12%, transparent);
+    }
+
+    .btn--icon-only:active {
+        background-color: color-mix(in srgb, currentColor 20%, transparent);
+    }
+
+    .btn--icon-only:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+/* Sizes — controls padding around the icon */
+.btn--icon-only--xs {
+    padding: 0.1rem;
+}
+
+.btn--icon-only--sm {
+    padding: 0.2rem;
+}
+
+.btn--icon-only--md {
+    padding: 0.3rem;
+}
+
+.btn--icon-only--lg {
+    padding: 0.4rem;
+}
+
+.btn--icon-only--xl {
+    padding: 0.5rem;
+}

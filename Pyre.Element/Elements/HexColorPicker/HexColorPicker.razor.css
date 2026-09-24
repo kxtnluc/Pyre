@@ -1,0 +1,84 @@
+.hex-color-picker__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: fit-content;
+}
+
+.hex-color-picker__label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+}
+
+.hex-color-picker__input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    padding: 0.25rem 0.5rem;
+    background: var(--color-background);
+    transition: border-color 150ms ease;
+}
+
+    .hex-color-picker__input-row:focus-within {
+        border-color: var(--color-primary);
+    }
+
+.hex-color-picker {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    padding: 0;
+    flex-shrink: 0;
+}
+
+    /* Remove default color picker border in webkit */
+    .hex-color-picker::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: var(--radius-sm);
+    }
+
+    .hex-color-picker::-webkit-color-swatch {
+        border: none;
+        border-radius: var(--radius-sm);
+    }
+
+.hex-color-picker__hex-text {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    font-family: monospace;
+    letter-spacing: 0.05em;
+}
+
+/* Sizes */
+.hex-color-picker--xs {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.hex-color-picker--sm {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.hex-color-picker--md {
+    width: 2rem;
+    height: 2rem;
+}
+
+.hex-color-picker--lg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.hex-color-picker--xl {
+    width: 3rem;
+    height: 3rem;
+}

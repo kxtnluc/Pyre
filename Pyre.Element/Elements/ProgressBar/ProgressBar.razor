@@ -7,23 +7,23 @@
 
 @code {
     // Base
-    [Parameter] public decimal Complete { get; set; } = 0m;
-    [Parameter] public decimal Total { get; set; } = 100m;
+    [Parameter] public double Complete { get; set; } = 0;
+    [Parameter] public double Total { get; set; } = 100;
     // Pyre Base
     [Parameter] public E_COLOR_BASIC CompleteColor { get; set; } = E_COLOR_BASIC.Primary;
     [Parameter] public E_COLOR_BASIC IncompleteColor { get; set; } = E_COLOR_BASIC.OffWhite;
     [Parameter] public E_SIZE Size { get; set; } = E_SIZE.sm;
     // Element Specific
-    private decimal CompletePercent => Total == 0 ? 0 : Math.Clamp((Complete / Total) * 100, 0, 100);
-    private decimal IncompletePercent => 100 - CompletePercent;
-    private decimal _size => Size switch
+    private double CompletePercent => Total == 0 ? 0 : Math.Clamp((Complete / Total) * 100, 0, 100);
+    private double IncompletePercent => 100 - CompletePercent;
+    private double _size => Size switch
     {
-        E_SIZE.xs => 0.35m,
-        E_SIZE.sm => 0.5m,
-        E_SIZE.md => 0.75m,
-        E_SIZE.lg => 1m,
-        E_SIZE.xl => 1.5m,
-        _ => 0.5m
+        E_SIZE.xs => 0.35,
+        E_SIZE.sm => 0.5,
+        E_SIZE.md => 0.75,
+        E_SIZE.lg => 1,
+        E_SIZE.xl => 1.5,
+        _ => 0.5
     };
 
     private string ComputedWraperStyle =>

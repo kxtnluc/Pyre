@@ -1,0 +1,7 @@
+.table__compact {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}

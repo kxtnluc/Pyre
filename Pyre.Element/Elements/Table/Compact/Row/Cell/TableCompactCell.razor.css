@@ -1,0 +1,16 @@
+.table__compact__cell {
+    padding: 0.25rem 0.5rem;
+    text-align: left;
+    min-width: 0; /* prevents overflow */
+}
+
+.cell--action{
+    align-self: end;
+    text-align: right;
+    display: flex;
+    justify-content: space-around;
+}
+
+.debug--cell--borders{
+    border: purple 2px dashed;
+}

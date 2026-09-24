@@ -41,5 +41,26 @@
         private void OpenModalTwo() => showModalTwo = true;
         private void CloseModalTwo() => showModalTwo = false;
         #endregion
+        #region Hex
+        private string myColor = "#ff6f4e";
+        #endregion
+        #region Table
+        private void ActionRemove()
+        {
+
+        }
+        private void ActionEdit()
+        {
+
+        }
+        #endregion
+
+
+        #region other
+        void _uselessFunction()
+        {
+            return;
+        }
+        #endregion
     }
 }

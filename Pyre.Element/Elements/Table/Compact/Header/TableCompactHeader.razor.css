@@ -1,0 +1,7 @@
+.table__compact__header {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: var(--color-primary);
+    color: var(--color-offwhite);
+    font-weight: 700;
+}

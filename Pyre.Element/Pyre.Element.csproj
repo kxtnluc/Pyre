@@ -24,6 +24,7 @@
 	  <Folder Include="Elements\Graph\ConsumptionLineGraph\" />
 	  <Folder Include="Elements\Navbar\NavBarSide\" />
 	  <Folder Include="Elements\Navbar\NavBarTop\" />
+	  <Folder Include="Elements\Table\Full\" />
 	  <Folder Include="Elements\Tooltip\" />
 	  <Folder Include="wwwroot\fonts\" />
 	</ItemGroup>

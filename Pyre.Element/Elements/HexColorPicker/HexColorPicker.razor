@@ -1,0 +1,50 @@
+﻿@namespace Pyre.Element.HexColorPicker
+@using Pyre.Element.Form
+
+<div class="@WrapperClass">
+    <label class="hex-color-picker__label" for="@Id">@Label</label>
+    <div class="hex-color-picker__input-row">
+        <input class="@ComputedClass"
+               id="@Id"
+               type="color"
+               value="@Value"
+               disabled="@Disabled"
+               @oninput="HandleInput"
+               @attributes="AdditionalAttributes" />
+        <span class="hex-color-picker__hex-text">@Value</span>
+    </div>
+</div>
+
+@code {
+    // Base
+    [Parameter] public string Label { get; set; } = "Color";
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public E_SIZE Size { get; set; } = E_SIZE.md;
+    // Element Specific
+    [Parameter] public string Value { get; set; } = "#000000";
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public EventCallback<string> OnChange { get; set; }
+    [Parameter] public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    [CascadingParameter] public Form? ParentForm { get; set; }
+    // ================================================================================================================
+    // Logic Handling
+    private async Task HandleInput(ChangeEventArgs e)
+    {
+        ParentForm?.InvalidFields.Remove(Label);
+        Value = e.Value?.ToString() ?? "#000000";
+        await ValueChanged.InvokeAsync(Value);
+        await OnChange.InvokeAsync(Value);
+    }
+    // ================================================================================================================
+    // Computed Classes & Styles
+    private string _size => Size.ToString().ToLower();
+
+    private string WrapperClass =>
+        $"hex-color-picker__wrapper hex-color-picker__wrapper--{_size}";
+
+    private string ComputedClass =>
+        $"hex-color-picker hex-color-picker--{_size}";
+}

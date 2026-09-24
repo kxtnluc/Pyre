@@ -27,6 +27,13 @@
     border-width: 0.2rem;
 }
 
+.card--variant--flatnoborder {
+    border: none;
+    border-width: unset;
+    border-color: none;
+    border-radius: unset;
+}
+
 /* Hover Effect Options*/
 
 /* #1 — Subtle lift with shadow */

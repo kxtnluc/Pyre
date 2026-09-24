@@ -1,0 +1,17 @@
+﻿@namespace Pyre.Element.Table.Compact
+@using Pyre.Element.Button
+@using Pyre.Element.Icons
+
+<div class="table__compact__row @(IsOdd ? "row--odd" : "") @(IsLast ? "row--last" : "") @(ParentTable.DebugBorders ? "debug--borders" : "")">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public bool IsOdd { get; set; } = false;
+    [Parameter] public bool IsLast { get; set; } = false;
+    [CascadingParameter] public TableCompact? ParentTable { get; set; }
+}

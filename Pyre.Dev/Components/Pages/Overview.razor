@@ -15,6 +15,8 @@
 @using Pyre.Element.Graphs
 @using Pyre.Element.LineBreak
 @using Pyre.Element.ProgressBar
+@using Pyre.Element.HexColorPicker
+@using Pyre.Element.Table.Compact
 @rendermode InteractiveServer
 
 <PageTitle>Overview</PageTitle>
@@ -59,6 +61,133 @@
                      Position="E_TOOLBAR_POSITION.BottomRight"
                      Size="E_SIZE.md"
                      TooltipSubject="Bank" />
+        </div>
+    </section>
+
+    <section class="table-section">
+        <div>
+            <h1>Tables</h1>
+        </div>
+        <div class="table-container">
+            <TableCompact>
+                <TableCompactHeader>
+                    <TableCompactCell Ratio="1/4">Field</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">Condition</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">Match</TableCompactCell>
+                </TableCompactHeader>
+
+                <TableCompactRow IsOdd="true" IsLast="false">
+                    <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">tr</TableCompactCell>
+                </TableCompactRow>
+                <TableCompactRow IsOdd="false" IsLast="false">
+                    <TableCompactCell Ratio="1/4">1</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">15</TableCompactCell>
+                </TableCompactRow>
+                <TableCompactRow IsOdd="true" IsLast="false">
+                    <TableCompactCell Ratio="1/4">asdasdasidj</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">asdasd</TableCompactCell>
+                </TableCompactRow>
+                <TableCompactRow IsOdd="false" IsLast="false">
+                    <TableCompactCell Ratio="1/4">something</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">iarawd</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">cool</TableCompactCell>
+                </TableCompactRow>
+                <TableCompactRow IsOdd="true" IsLast="false">
+                    <TableCompactCell Ratio="1/4">something</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">isnt</TableCompactCell>
+                    <TableCompactCell Ratio="2/4">cool</TableCompactCell>
+                </TableCompactRow>
+            </TableCompact>
+
+            <TableCompact HasActionColumn="true">
+                <TableCompactHeader>
+                    <TableCompactCell Ratio="1/4">Field</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">Condition</TableCompactCell>
+                    <TableCompactCell Ratio="1/1">Match</TableCompactCell>
+                    <TableCompactCell IsActionCell="true" Width="8rem">Actions</TableCompactCell>
+                </TableCompactHeader>
+
+                <TableCompactRow IsOdd="true">
+                    <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+                    <TableCompactCell IsActionCell="true" Width="8rem">
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                            <TrashIcon Size="24" />
+                        </ButtonIconOnly>
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
+                            <EditIcon Size="24" />
+                        </ButtonIconOnly>
+                    </TableCompactCell>
+                </TableCompactRow>
+
+                <TableCompactRow IsOdd="false">
+                    <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+                    <TableCompactCell IsActionCell="true" Width="8rem">
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                            <TrashIcon Size="24" />
+                        </ButtonIconOnly>
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
+                            <EditIcon Size="24" />
+                        </ButtonIconOnly>
+                    </TableCompactCell>
+                </TableCompactRow>
+
+                <TableCompactRow IsOdd="true" IsLast="true">
+                    <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+                    <TableCompactCell Ratio="1/4">is</TableCompactCell>
+                    <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+                    <TableCompactCell IsActionCell="true" Width="8rem">
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                            <TrashIcon Size="24" />
+                        </ButtonIconOnly>
+                        <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
+                            <EditIcon Size="24" />
+                        </ButtonIconOnly>
+                    </TableCompactCell>
+                </TableCompactRow>
+            </TableCompact>
+        </div>
+    </section>
+
+    <section class="icon-button-section">
+        <div>
+            <h1>Icon Buttons</h1>
+        </div>
+        <div class="hex-container">
+            <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                <TrashIcon Size="18" />
+            </ButtonIconOnly>
+
+            <ButtonIconOnly Color="E_COLOR_BASIC.Info" Size="E_SIZE.lg">
+                <EditIcon Size="24" />
+            </ButtonIconOnly>
+
+            <ButtonIconOnly Color="E_COLOR_BASIC.Primary" Size="E_SIZE.xl">
+                <BookmarkIcon Size="30" />
+            </ButtonIconOnly>
+        </div>
+    </section>
+
+    <section class="hex-color-section">
+        <div>
+            <h1>Hex Color Picker</h1>
+        </div>
+        <div class="hex-container">
+            @* Basic *@
+            <HexColorPicker @bind-Value="myColor" Label="Brand Color" />
+
+            @* No label *@
+            <HexColorPicker @bind-Value="myColor" Label="" />
+
+            @* With size *@
+            <HexColorPicker @bind-Value="myColor" Label="Accent" Size="E_SIZE.lg" />
         </div>
     </section>
 
@@ -222,6 +351,7 @@
     <section class="form-section">
         <div>
             <h1>Form</h1>
+            @myColor
             @* <div>Form: @newBankPayload.Name + @newBankPayload.Country + @newBankPayload.State </div> *@
         </div>
         <div class="form-container">
@@ -250,6 +380,17 @@
                             <div class="form-checkbox-test">
                                 <Checkbox Label="Unflip" />
                             </div>
+                        </FormCell>
+                    </FormRow>
+                    <FormRow>
+                        <FormCell Ratio="3/6">
+                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                        </FormCell>
+                        <FormCell Ratio="2/6">
+                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                        </FormCell>
+                        <FormCell Ratio="1/6">
+                            <HexColorPicker @bind-Value="myColor" Label="Brand Color" Size="E_SIZE.xs" />
                         </FormCell>
                     </FormRow>
                 </FormContent>

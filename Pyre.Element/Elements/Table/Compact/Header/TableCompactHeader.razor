@@ -1,0 +1,14 @@
+﻿@namespace Pyre.Element.Table.Compact
+
+<div class="table__compact__header">
+    @ChildContent
+</div>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [CascadingParameter] public TableCompact? ParentTable { get; set; }
+}

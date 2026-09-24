@@ -1,0 +1,18 @@
+.table__compact__row {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: var(--color-secondary-faded-2);
+}
+
+.row--odd {
+    background-color: var(--color-secondary-faded-3);
+}
+
+.row--last {
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+}
+
+.debug--borders{
+    border: yellow 2px solid;
+}

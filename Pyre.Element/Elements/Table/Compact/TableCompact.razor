@@ -1,0 +1,18 @@
+﻿@namespace Pyre.Element.Table.Compact
+
+
+<CascadingValue Value="this">
+    <div class="table__compact">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    // Base
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    // Pyre Base
+    [Parameter] public bool HasActionColumn { get; set; }
+    [Parameter] public bool DebugBorders { get; set; } = false;
+}

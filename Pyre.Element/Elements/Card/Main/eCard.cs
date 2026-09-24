@@ -4,6 +4,7 @@
     {
         Raised,
         Flat,
-        Inset
+        Inset,
+        FlatNoBorder,
     }
 }

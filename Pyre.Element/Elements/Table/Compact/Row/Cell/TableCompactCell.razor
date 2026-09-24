@@ -1,0 +1,36 @@
+﻿@namespace Pyre.Element.Table.Compact
+
+<div style="@ComputedStyle" 
+    class="table__compact__cell @(IsActionCell ? ("cell--action") : ("")) @(ParentTable.DebugBorders ? "debug--cell--borders" : "")">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Ratio { get; set; } = "1/1";
+    [Parameter] public string? Width { get; set; } = null;
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    [Parameter] public bool IsActionCell { get; set; } = false;
+    [CascadingParameter] public TableCompact? ParentTable { get; set; }
+
+    private string FlexValue
+    {
+        get
+        {
+            var parts = Ratio.Split('/');
+            if (parts.Length == 2 &&
+                int.TryParse(parts[0], out int num) &&
+                int.TryParse(parts[1], out int den))
+            {
+                return ((double)num / den).ToString("F4", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            return "1";
+        }
+    }
+
+    private string ComputedStyle => Width != null
+    ? $"width: {Width}; flex: 0 0 {Width};"  // fixed — won't grow or shrink
+    : $"flex: {FlexValue};";                   // ratio — grows and shrinks normally
+}
