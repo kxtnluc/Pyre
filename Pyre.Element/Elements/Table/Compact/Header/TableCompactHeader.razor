@@ -1,6 +1,6 @@
 ﻿@namespace Pyre.Element.Table.Compact
 
-<div class="table__compact__header">
+<div class="table__compact__header @(ParentTable.IsHidden ? ("is--last"):(""))">
     @ChildContent
 </div>
 

@@ -1,7 +1,8 @@
 ﻿@namespace Pyre.Element.Table.Compact
 
-<div style="@ComputedStyle" 
-    class="table__compact__cell @(IsActionCell ? ("cell--action") : ("")) @(ParentTable.DebugBorders ? "debug--cell--borders" : "")">
+<div hidden="@ParentTable.IsHidden" 
+     style="@ComputedStyle" 
+     class="table__compact__cell @(IsActionCell ? ("cell--action") : ("")) @(ParentTable.DebugBorders ? "debug--cell--borders" : "") @(ParentTable.IsHidden ? ("table--is--hidden") : (""))">
     @ChildContent
 </div>
 

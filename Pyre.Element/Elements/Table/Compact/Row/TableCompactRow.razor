@@ -2,7 +2,7 @@
 @using Pyre.Element.Button
 @using Pyre.Element.Icons
 
-<div class="table__compact__row @(IsOdd ? "row--odd" : "") @(IsLast ? "row--last" : "") @(ParentTable.DebugBorders ? "debug--borders" : "")">
+<div hidden="@ParentTable!.IsHidden" class="table__compact__row @(IsOdd ? "row--odd" : "") @(IsLast ? "row--last" : "") @(ParentTable.DebugBorders ? "debug--borders" : "")">
     @ChildContent
 </div>
 

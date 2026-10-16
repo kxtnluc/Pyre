@@ -31,10 +31,10 @@
                         break;
                     case E_MODAL.AddEdit:
                         break;
-                    case E_MODAL.Delete:
+                    case E_MODAL.Remove:
                         <div class="modal--footer--content">
-                            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Remove">Delete</Button>
                             <Button Variant="E_VARIANT.Secondary" Color="E_COLOR_BASIC.OffWhite" Onclick="LeaveModal">Cancel</Button>
+                            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Remove" OnClick="OnRemove">Delete</Button>
                         </div>
                         break;
                     case E_MODAL.Info:
@@ -44,8 +44,8 @@
                         break;
                     case E_MODAL.Warning:
                         <div class="modal--footer--content">
-                            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Remove">I Understand</Button>
                             <Button Variant="E_VARIANT.Secondary" Color="E_COLOR_BASIC.OffWhite" Onclick="LeaveModal">Cancel</Button>
+                            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Remove">I Understand</Button>
                         </div>
                         break;
                 }
@@ -91,4 +91,7 @@
 
     private string ComputedStyle =>
         $"";
+
+    // Element Specific
+    [Parameter] public EventCallback OnRemove { get; set; }
 }

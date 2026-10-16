@@ -1,0 +1,28 @@
+.remove-description {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.remove-warning{
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    background-color: var(--color-secondary-faded-2);
+    border-radius: var(--radius-md);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.item-word {
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.object-word {
+}
+
+.from-word {
+    font-weight: 700;
+}

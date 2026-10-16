@@ -54,7 +54,13 @@
 
         }
         #endregion
-
+        #region Delete Modal
+        bool testvar = false;
+        bool showDeleteModal = false;
+        void OpenDeleteModal() => showDeleteModal = true;
+        void CloseDeleteModal() => showDeleteModal = false;
+        void HandleDelete() => testvar = !testvar;
+        #endregion
 
         #region other
         void _uselessFunction()

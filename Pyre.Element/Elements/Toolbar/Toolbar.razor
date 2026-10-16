@@ -3,6 +3,12 @@
 @using Pyre.Element.Tooltip
 
 <div class="@ComputedClass">
+    @if (HasSaveBtn)
+    {
+        <Tooltip Text="@("Save" + TooltipSubject)" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
+            <button class="tb-add-btn tb-btn" @onclick="OnSave"><SaveIcon Size=@ComputedSize /></button>
+        </Tooltip>
+    }
     @if (HasAddBtn)
     {
         <Tooltip Text="@("Add" + TooltipSubject)" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
@@ -18,7 +24,7 @@
     @if (HasManageBtn)
     {
         <Tooltip Text="@("Manage" + TooltipSubject + "s")" Position="@(Position == E_TOOLBAR_POSITION.TopRight ? E_DIRECTION_CARDINAL.Down : E_DIRECTION_CARDINAL.Up)" Offset="20">
-            <button class="tb-manage-btn tb-btn" @onclick="OnManage"><EditIcon Size=@ComputedSize /></button>
+            <button class="tb-manage-btn tb-btn" @onclick="OnManage"><EditIcon Variant="E_EDIT_ICON.File" Size=@ComputedSize /></button>
         </Tooltip>
     }
     @if (HasSearchBtn)
@@ -37,17 +43,19 @@
 
 @code {
     // Base
-    [Parameter] public bool HasAddBtn { get; set; } = true;
-    [Parameter] public bool HasLinkBtn { get; set; } = false;
-    [Parameter] public bool HasManageBtn { get; set; } = true;
     [Parameter] public bool HasSettingsBtn { get; set; } = true;
+    [Parameter] public bool HasAddBtn { get; set; } = false;
+    [Parameter] public bool HasLinkBtn { get; set; } = false;
+    [Parameter] public bool HasManageBtn { get; set; } = false;
     [Parameter] public bool HasSearchBtn { get; set; } = false;
+    [Parameter] public bool HasSaveBtn { get; set; } = false;
 
     [Parameter] public EventCallback OnAdd { get; set; }
     [Parameter] public EventCallback OnLink { get; set; }
     [Parameter] public EventCallback OnManage { get; set; }
     [Parameter] public EventCallback OnSettings { get; set; }
     [Parameter] public EventCallback OnSearch { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
     // Pyre Base
     [Parameter] public E_TOOLBAR_POSITION Position { get; set; } = E_TOOLBAR_POSITION.BottomRight;
     [Parameter] public E_SIZE Size { get; set; } = E_SIZE.lg;

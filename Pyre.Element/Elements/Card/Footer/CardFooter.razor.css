@@ -5,15 +5,18 @@
     align-items: center;
 }
 
-.card--is--data--point--false {
+.card--variant--default {
     gap: 0.5rem;
     padding: 0 1.5rem 1.5rem 1.5rem;
     color: blue;
 }
 
-.card--is--data--point--true {
+.card--variant--datapoint {
     gap: 1rem;
     height: 2rem;
+}
+
+.card--variant--doubledatapoint {
 }
 
 .card--wraper--lateral--direction--center {
@@ -39,12 +42,12 @@
     border-top-right-radius: 0.25rem;
 }
 
-.card--data--status--positive {
+.card--data--status--primary--positive, card--data--status--secondary--negative {
     background-color: var(--color-positive-faded-3);
     color: var(--color-positive);
 }
 
-.card--data--status--negative {
+.card--data--status--primary--negative, card--data--status--secondary--negative {
     background-color: var(--color-secondary-faded-3);
     color: var(--color-secondary);
 }
@@ -55,4 +58,16 @@
 
 .card--lateral--direction--right {
     border-top-right-radius: 0;
+}
+
+.double--data--points{
+    display: flex;
+    justify-content: space-between;
+    .primary{
+
+    }
+
+    .secondary{
+
+    }
 }

@@ -4,7 +4,7 @@
     {
         Unset,
         AddEdit,
-        Delete,
+        Remove,
         Warning,
         Info,
     }

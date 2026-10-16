@@ -1,0 +1,37 @@
+﻿@namespace Pyre.Element.Modal
+
+<Modal
+    Title="@_title"
+    Open="@Open"
+    OnClose="@OnClose"
+    Size="E_SIZE.md"
+    Variant="E_MODAL.Remove"
+    OnRemove="OnRemove"
+>
+    <div>
+        @ChildContent
+    </div>
+    <div>
+        <div class="remove-description">
+            Are you sure you want to delete the <span class="object-word">@ObjectName</span> '<span class="item-word">@ItemName</span>' from <span class="from-word">@FromName</span>
+        </div>
+        <div class="remove-warning">
+            @WarningText
+        </div>
+    </div>
+</Modal>
+
+@code {
+    // Base
+    [Parameter] public EventCallback OnRemove { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public bool Open { get; set; } = false;
+    // Pyre Base
+    [Parameter] public string ObjectName { get; set; } = "_objectdefault";
+    [Parameter] public string ItemName { get; set; } = "_itemdefault";
+    [Parameter] public string FromName { get; set; } = "_fromdefault";
+    [Parameter] public string WarningText { get; set; } = "This action cannot be undone!";
+    // [
+    private string _title => $"Remove {ObjectName}?";
+}

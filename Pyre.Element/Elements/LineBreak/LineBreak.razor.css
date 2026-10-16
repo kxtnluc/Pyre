@@ -23,3 +23,35 @@
 .line__break--xl {
     height: 10px;
 }
+
+/* Vertical — size controls width, Width param controls height */
+.line__break--vertical {
+    height: 100%; /* fallback, overridden by inline style */
+    width: auto; /* reset horizontal width */
+    align-self: stretch; /* fills parent height in a flex container */
+}
+
+    .line__break--vertical.line__break--xs {
+        width: 1px;
+        height: auto;
+    }
+
+    .line__break--vertical.line__break--sm {
+        width: 2px;
+        height: auto;
+    }
+
+    .line__break--vertical.line__break--md {
+        width: 4px;
+        height: auto;
+    }
+
+    .line__break--vertical.line__break--lg {
+        width: 6px;
+        height: auto;
+    }
+
+    .line__break--vertical.line__break--xl {
+        width: 10px;
+        height: auto;
+    }

@@ -2,6 +2,7 @@
 {
     public enum E_EDIT_ICON
     {
-        Default,
+        Manage,
+        File
     }
 }

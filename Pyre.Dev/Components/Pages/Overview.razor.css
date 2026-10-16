@@ -49,6 +49,14 @@
     gap: 0.5rem;
 }
 
+.vertical-line-break-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    height: 20rem;
+    background-color: lightblue;
+}
+
 .pb-container{
     display: flex;
     flex-direction: column;

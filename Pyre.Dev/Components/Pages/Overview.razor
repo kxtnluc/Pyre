@@ -153,525 +153,629 @@
                     </TableCompactCell>
                 </TableCompactRow>
             </TableCompact>
-        </div>
-    </section>
 
-    <section class="icon-button-section">
-        <div>
-            <h1>Icon Buttons</h1>
-        </div>
-        <div class="hex-container">
+@code {
+    bool isHiddenTable = false;
+}
+
+<div>
+    <Button OnClick="@(() => isHiddenTable = !isHiddenTable)">Hide Table</Button>
+</div>
+
+<TableCompact HasActionColumn="true" IsHidden="@isHiddenTable">
+    <TableCompactHeader>
+        <TableCompactCell Ratio="1/4">Field</TableCompactCell>
+        <TableCompactCell Ratio="1/4">Condition</TableCompactCell>
+        <TableCompactCell Ratio="1/1">Match</TableCompactCell>
+        <TableCompactCell IsActionCell="true" Width="8rem">Actions</TableCompactCell>
+    </TableCompactHeader>
+
+    <TableCompactRow IsOdd="true">
+        <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+        <TableCompactCell Ratio="1/4">is</TableCompactCell>
+        <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+        <TableCompactCell IsActionCell="true" Width="8rem">
             <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
-                <TrashIcon Size="18" />
+                <TrashIcon Size="24" />
             </ButtonIconOnly>
-
-            <ButtonIconOnly Color="E_COLOR_BASIC.Info" Size="E_SIZE.lg">
+            <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
                 <EditIcon Size="24" />
             </ButtonIconOnly>
+        </TableCompactCell>
+    </TableCompactRow>
 
-            <ButtonIconOnly Color="E_COLOR_BASIC.Primary" Size="E_SIZE.xl">
-                <BookmarkIcon Size="30" />
+    <TableCompactRow IsOdd="false">
+        <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+        <TableCompactCell Ratio="1/4">is</TableCompactCell>
+        <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+        <TableCompactCell IsActionCell="true" Width="8rem">
+            <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                <TrashIcon Size="24" />
             </ButtonIconOnly>
-        </div>
-    </section>
+            <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
+                <EditIcon Size="24" />
+            </ButtonIconOnly>
+        </TableCompactCell>
+    </TableCompactRow>
 
-    <section class="hex-color-section">
+    <TableCompactRow IsOdd="true" IsLast="true">
+        <TableCompactCell Ratio="1/4">32333</TableCompactCell>
+        <TableCompactCell Ratio="1/4">is</TableCompactCell>
+        <TableCompactCell Ratio="1/1">tr</TableCompactCell>
+        <TableCompactCell IsActionCell="true" Width="8rem">
+            <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+                <TrashIcon Size="24" />
+            </ButtonIconOnly>
+            <ButtonIconOnly Color="E_COLOR_BASIC.Primary">
+                <EditIcon Size="24" />
+            </ButtonIconOnly>
+        </TableCompactCell>
+    </TableCompactRow>
+</TableCompact>
+</div>
+</section>
+
+<section class="icon-button-section">
+    <div>
+        <h1>Icon Buttons</h1>
+    </div>
+    <div class="hex-container">
+        <ButtonIconOnly Color="E_COLOR_BASIC.Remove">
+            <TrashIcon Size="18" />
+        </ButtonIconOnly>
+
+        <ButtonIconOnly Color="E_COLOR_BASIC.Info" Size="E_SIZE.lg">
+            <EditIcon Size="24" />
+        </ButtonIconOnly>
+
+        <ButtonIconOnly Color="E_COLOR_BASIC.Primary" Size="E_SIZE.xl">
+            <BookmarkIcon Size="30" />
+        </ButtonIconOnly>
+    </div>
+</section>
+
+<section class="delete-modal-section">
+    <div>
+        <h1>Delete Modal</h1>
+        <div>@testvar</div>
+    </div>
+    <div class="delete-modal-container">
+        <Button OnClick="OpenDeleteModal">Open Delete Modal</Button>
+
+        <DeleteConfirmationModal Open="showDeleteModal"
+                                 OnClose="CloseDeleteModal"
+                                 ObjectName="Category"
+                                 ItemName="Is it Glad"
+                                 FromName="Hearth"
+                                 OnRemove="HandleDelete" />
+    </div>
+</section>
+
+<section class="hex-color-section">
+    <div>
+        <h1>Hex Color Picker</h1>
+    </div>
+    <div class="hex-container">
+        @* Basic *@
+        <HexColorPicker @bind-Value="myColor" Label="Brand Color" />
+
+        @* No label *@
+        <HexColorPicker @bind-Value="myColor" Label="" />
+
+        @* With size *@
+        <HexColorPicker @bind-Value="myColor" Label="Accent" Size="E_SIZE.lg" />
+    </div>
+</section>
+
+<section class="progress-bar-section">
+    <div>
+        <h1>Progress Bar</h1>
+    </div>
+    <div class="pb-container">
+        @* 40% complete *@
+        <ProgressBar Complete="40" Total="100" />
+
+        @* custom colors *@
+        <ProgressBar Complete="750" Total="1000"
+                     Size="E_SIZE.md"
+                     CompleteColor="E_COLOR_BASIC.Info"
+                     IncompleteColor="E_COLOR_BASIC.OffWhite" />
+
+        <ProgressBar Complete="750" Total="1000"
+                     Size="E_SIZE.lg"
+                     CompleteColor="E_COLOR_BASIC.Info"
+                     IncompleteColor="E_COLOR_BASIC.OffWhite" />
+        <ProgressBar Complete="750" Total="1000"
+                     Size="E_SIZE.xl"
+                     CompleteColor="E_COLOR_BASIC.Info"
+                     IncompleteColor="E_COLOR_BASIC.OffWhite" />
+    </div>
+</section>
+
+<section class="consumption-line-graph-section">
+    <div>
+        <h1>Line Consumption Graph</h1>
+    </div>
+    <div class="lgc-graph-container">
+        <ConsumptionLineGraph />
+        <ConsumptionLineGraph Variant="E_STATUS.Negative" />
+        <ConsumptionLineGraph Variant="E_STATUS.Neutral" />
+    </div>
+</section>
+
+<section class="line-break-section">
+    <div>
+        <h1>Line Breaks</h1>
+    </div>
+    <div class="line-break-container">
         <div>
-            <h1>Hex Color Picker</h1>
-        </div>
-        <div class="hex-container">
-            @* Basic *@
-            <HexColorPicker @bind-Value="myColor" Label="Brand Color" />
-
-            @* No label *@
-            <HexColorPicker @bind-Value="myColor" Label="" />
-
-            @* With size *@
-            <HexColorPicker @bind-Value="myColor" Label="Accent" Size="E_SIZE.lg" />
-        </div>
-    </section>
-
-    <section class="progress-bar-section">
-        <div>
-            <h1>Progress Bar</h1>
-        </div>
-        <div class="pb-container">
-            @* 40% complete *@
-            <ProgressBar Complete="40" Total="100" />
-
-            @* custom colors *@
-            <ProgressBar Complete="750" Total="1000"
-                         Size="E_SIZE.md"
-                         CompleteColor="E_COLOR_BASIC.Info"
-                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
-
-            <ProgressBar Complete="750" Total="1000"
-                         Size="E_SIZE.lg"
-                         CompleteColor="E_COLOR_BASIC.Info"
-                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
-            <ProgressBar Complete="750" Total="1000"
-                         Size="E_SIZE.xl"
-                         CompleteColor="E_COLOR_BASIC.Info"
-                         IncompleteColor="E_COLOR_BASIC.OffWhite" />
-        </div>
-    </section>
-
-    <section class="consumption-line-graph-section">
-        <div>
-            <h1>Line Consumption Graph</h1>
-        </div>
-        <div class="lgc-graph-container">
-            <ConsumptionLineGraph />
-            <ConsumptionLineGraph Variant="E_STATUS.Negative" />
-            <ConsumptionLineGraph Variant="E_STATUS.Neutral" />
-        </div>
-    </section>
-
-    <section class="line-break-section">
-        <div>
-            <h1>Line Breaks</h1>
-        </div>
-        <div class="line-break-container">
-            <div>
-                <LineBreak />
-            </div>
-            <div>
-                <LineBreak Size="E_SIZE.md" Color="E_COLOR_BASIC.Secondary" />
-            </div>
-            <div>
-                <LineBreak Width="50%" HexColor="#ff6f4e" Size="E_SIZE.lg" />
-            </div>
-            <div>
-                <LineBreak Width="4rem" Size="E_SIZE.xl" Color="E_COLOR_BASIC.Info" />
-            </div>
-        </div>
-    </section>
-
-    <section class="button-section">
-        <div>
-            <h1>Buttons</h1>
-            <div>Button: @buttonText</div>
-        </div>
-        <div class="button-body">
-            <Button Variant="E_VARIANT.Primary">
-                Primary
-            </Button>
-
-            <Button Variant="E_VARIANT.Secondary">
-                Secondary
-            </Button>
-
-            <Button Variant="E_VARIANT.Outline" Size="E_SIZE.sm">
-                Outline + sm
-            </Button>
-
-            <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">
-                Secondary + Offwhite
-            </Button>
-
-
-            <Button Variant="E_VARIANT.Unset" Size="E_SIZE.md">
-                Unset + md
-            </Button>
-
-            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove" Size="E_SIZE.lg">
-                Outline + Color Remove + lg
-                <TrashIcon />
-            </Button>
-
-            <Button Variant="E_VARIANT.Primary" OnClick="ButtonClick" Color="E_COLOR_BASIC.Secondary">
-                No Di + Color Secondary
-            </Button>
-
-            <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("DI Works!"))" Color="E_COLOR_BASIC.Info">
-                With Di + Color Info
-            </Button>
-            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Info">
-                Outline + Info
-            </Button>
-            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Warning">
-                Outline + Warning
-            </Button>
-            <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove">
-                <TrashIcon />
-                Outline + Icon
-            </Button>
-        </div>
-    </section>
-
-    <section class="icon-section">
-        <div>
-            <h1>Icons</h1>
-        </div>
-        <div class="icon-frame">
-            <div class="icon">
-                <TrashIcon Size="50" />
-            </div>
-            <div class="icon">
-                <PlusIcon Size="50" />
-            </div>
-            <div class="icon">
-                <EditIcon Size="50" />
-            </div>
-            <div class="icon">
-                <GearIcon Size="50" />
-            </div>
-            <div class="icon">
-                <OpenWindowIcon Size="50" />
-            </div>
-            <div class="icon">
-                <HouseIcon Size="50" />
-            </div>
-            <div class="icon">
-                <PlusIcon Variant="E_PLUS_ICON.Folder" Size="50" />
-            </div>
-            <div class="icon">
-                <QuestionIcon Variant="E_QUESTION_ICON.Seal" Size="50" />
-            </div>
-        </div>
-    </section>
-
-    <section class="input-section">
-        <div>
-            <h1>Inputs</h1>
-            <div>Input: @inputText</div>
+            <LineBreak />
         </div>
         <div>
-            <div class="input-container">
-                <Input Label="Label Replaced!" InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" />
-                <Input InputType="E_INPUT_TYPE.Email" @bind-Value="inputText" />
-                <Input InputType="E_INPUT_TYPE.Password" @bind-Value="inputText" />
-                <Input Label="Googoogaagaa" InputType="E_INPUT_TYPE.Url" @bind-Value="inputText" />
-                <Input InputType="E_INPUT_TYPE.Search" @bind-Value="inputText" />
-                <Input InputType="E_INPUT_TYPE.Tel" @bind-Value="inputText" />
-            </div>
+            <LineBreak Size="E_SIZE.md" Color="E_COLOR_BASIC.Secondary" />
         </div>
-    </section>
-
-    <section class="form-section">
         <div>
-            <h1>Form</h1>
-            @myColor
-            @* <div>Form: @newBankPayload.Name + @newBankPayload.Country + @newBankPayload.State </div> *@
+            <LineBreak Width="50%" HexColor="#ff6f4e" Size="E_SIZE.lg" />
         </div>
-        <div class="form-container">
+        <div>
+            <LineBreak Width="4rem" Size="E_SIZE.xl" Color="E_COLOR_BASIC.Info" />
+        </div>
+    </div>
+</section>
+
+<section class="vertical-line-break-section">
+    <div>
+        <h1>Vertical Line Breaks</h1>
+    </div>
+    <div class="vertical-line-break-container">
+        <div>
+            <LineBreak Vertical="true" />
+        </div>
+        <div>
+            <LineBreak Vertical="true" Size="E_SIZE.md" Color="E_COLOR_BASIC.Secondary" />
+        </div>
+        <div>
+            <LineBreak Vertical="true" Width="50%" HexColor="#ff6f4e" Size="E_SIZE.lg" />
+        </div>
+        <div>
+            <LineBreak Vertical="true" Width="4rem" Size="E_SIZE.xl" Color="E_COLOR_BASIC.Info" />
+        </div>
+    </div>
+</section>
+
+
+<section class="button-section">
+    <div>
+        <h1>Buttons</h1>
+        <div>Button: @buttonText</div>
+    </div>
+    <div class="button-body">
+        <Button Variant="E_VARIANT.Primary">
+            Primary
+        </Button>
+
+        <Button Variant="E_VARIANT.Secondary">
+            Secondary
+        </Button>
+
+        <Button Variant="E_VARIANT.Outline" Size="E_SIZE.sm">
+            Outline + sm
+        </Button>
+
+        <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">
+            Secondary + Offwhite
+        </Button>
+
+
+        <Button Variant="E_VARIANT.Unset" Size="E_SIZE.md">
+            Unset + md
+        </Button>
+
+        <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove" Size="E_SIZE.lg">
+            Outline + Color Remove + lg
+            <TrashIcon />
+        </Button>
+
+        <Button Variant="E_VARIANT.Primary" OnClick="ButtonClick" Color="E_COLOR_BASIC.Secondary">
+            No Di + Color Secondary
+        </Button>
+
+        <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("DI Works!"))" Color="E_COLOR_BASIC.Info">
+            With Di + Color Info
+        </Button>
+        <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Info">
+            Outline + Info
+        </Button>
+        <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Warning">
+            Outline + Warning
+        </Button>
+        <Button Variant="E_VARIANT.Outline" Color="E_COLOR_BASIC.Remove">
+            <TrashIcon />
+            Outline + Icon
+        </Button>
+    </div>
+</section>
+
+<section class="icon-section">
+    <div>
+        <h1>Icons</h1>
+    </div>
+    <div class="icon-frame">
+        <div class="icon">
+            <TrashIcon Size="50" />
+        </div>
+        <div class="icon">
+            <PlusIcon Size="50" />
+        </div>
+        <div class="icon">
+            <EditIcon Size="50" />
+        </div>
+        <div class="icon">
+            <GearIcon Size="50" />
+        </div>
+        <div class="icon">
+            <OpenWindowIcon Size="50" />
+        </div>
+        <div class="icon">
+            <HouseIcon Size="50" />
+        </div>
+        <div class="icon">
+            <PlusIcon Variant="E_PLUS_ICON.Folder" Size="50" />
+        </div>
+        <div class="icon">
+            <QuestionIcon Variant="E_QUESTION_ICON.Seal" Size="50" />
+        </div>
+    </div>
+</section>
+
+<section class="input-section">
+    <div>
+        <h1>Inputs</h1>
+        <div>Input: @inputText</div>
+    </div>
+    <div>
+        <div class="input-container">
+            <Input Label="Label Replaced!" InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" />
+            <Input InputType="E_INPUT_TYPE.Email" @bind-Value="inputText" />
+            <Input InputType="E_INPUT_TYPE.Password" @bind-Value="inputText" />
+            <Input Label="Googoogaagaa" InputType="E_INPUT_TYPE.Url" @bind-Value="inputText" />
+            <Input InputType="E_INPUT_TYPE.Search" @bind-Value="inputText" />
+            <Input InputType="E_INPUT_TYPE.Tel" @bind-Value="inputText" />
+        </div>
+    </div>
+</section>
+
+<section class="form-section">
+    <div>
+        <h1>Form</h1>
+        @myColor
+        @* <div>Form: @newBankPayload.Name + @newBankPayload.Country + @newBankPayload.State </div> *@
+    </div>
+    <div class="form-container">
+        <Form>
+            <FormHeader>
+                <FormTitle>Crate Bank Account</FormTitle>
+                <FormDescription>Manually enter bank account information to file transactions and cards under</FormDescription>
+            </FormHeader>
+            <FormContent>
+                <FormRow>
+                    <FormCell Ratio="4/6">
+                        <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                    </FormCell>
+                    <FormCell Ratio="2/6" CenterVertically="true" AlignRight="true">
+                        <Checkbox FlipLabel="true" Label="Check Box" />
+                    </FormCell>
+                </FormRow>
+                <FormRow>
+                    <FormCell Ratio="2/5">
+                        <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Account Number" Placeholder="4444000012349876" />
+                    </FormCell>
+                    <FormCell Ratio="2/5">
+                        <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Routing Number" Placeholder="4444000012349876" />
+                    </FormCell>
+                    <FormCell Ratio="1/5">
+                        <div class="form-checkbox-test">
+                            <Checkbox Label="Unflip" />
+                        </div>
+                    </FormCell>
+                </FormRow>
+                <FormRow>
+                    <FormCell Ratio="3/6">
+                        <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                    </FormCell>
+                    <FormCell Ratio="2/6">
+                        <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
+                    </FormCell>
+                    <FormCell Ratio="1/6">
+                        <HexColorPicker @bind-Value="myColor" Label="Brand Color" Size="E_SIZE.xs" />
+                    </FormCell>
+                </FormRow>
+            </FormContent>
+            <FormFooter>
+                <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
+                <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
+            </FormFooter>
+        </Form>
+    </div>
+    <div class="form-container">
+        <Form>
+            <FormHeader>
+                <FormTitle>Bank Entity</FormTitle>
+                <FormDescription>The entity that manages your accounts</FormDescription>
+            </FormHeader>
+            <FormContent>
+                <FormRow>
+                    <FormCell Ratio="1/2">
+                        <Input Variant="INPUT_VARIANT.Default" Label="Name" @bind-Value="inputText" />
+                    </FormCell>
+                </FormRow>
+            </FormContent>
+            <FormFooter>
+                <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
+                <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
+            </FormFooter>
+        </Form>
+    </div>
+</section>
+
+<section class="dropdown-section">
+    <div>
+        <h1>Dropdown</h1>
+        <div>Dropdown: @inputDropdown</div>
+    </div>
+    <div>
+        <div class="dropdown-container">
+            <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" IncludeEmptyOption=true Label="Default" @bind-Value="@inputDropdown" />
+            <Dropdown Variant="E_DROPDOWN.Operations" @bind-Value="@inputDropdown" />
+            <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" Label="Other" @bind-Value="@inputDropdown" />
+            <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.sm" IncludeEmptyOption=true Label="Small" @bind-Value="@inputDropdown" />
+            <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.lg" IncludeEmptyOption=true Label="Large" @bind-Value="@inputDropdown" />
+            <Dropdown Variant="E_DROPDOWN.StringOperations" @bind-Value="@inputDropdown" />
+        </div>
+    </div>
+</section>
+
+<section class="card-section">
+    <div>
+        <h1>Cards & Click Wrapper</h1>
+        <div>Click: @buttonText</div>
+    </div>
+    <div class="card-container">
+        @* Simple card *@
+        <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+            <Card Variant="E_CARD.Raised" HoverEffects="true">
+                <CardHeader>
+                    <CardTitle>
+                        <Icon>
+                            <HouseIcon Size="22" />
+                        </Icon>
+                        <Text>East TN Home in the country and stuff like that</Text>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent Variant="E_CARD_CONTENT.DataPoint">$400,000</CardContent>
+                <CardFooter Variant="E_CARD_FOOTER.DataPoint" PrimaryDataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Center" PrimaryDataPoint="Center"/>
+            </Card>
+        </ClickWraper>
+        <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+            <Card Variant="E_CARD.Raised" HoverEffects="true">
+                <CardHeader class="custom-blue-header">
+                    <CardTitle>
+                        <Icon>
+                            <HouseIcon Size="22" />
+                        </Icon>
+                        <Text>East TN Home in the country and stuff like that</Text>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent Variant="E_CARD_CONTENT.DataPoint">$400,000</CardContent>
+                <CardFooter Variant="E_CARD_FOOTER.DataPoint" PrimaryDataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Right" PrimaryDataPoint="Right" />
+            </Card>
+        </ClickWraper>
+        <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
+            <Card Variant="E_CARD.Inset" HoverEffects="true">
+                <CardHeader>
+                    <CardTitle>
+                        <Icon>
+                            <HouseIcon Size="22" />
+                        </Icon>
+                        <Text>East TN Home in the country and stuff like that</Text>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent Variant="E_CARD_CONTENT.DataPoint">$400,000</CardContent>
+                <CardFooter Variant="E_CARD_FOOTER.DataPoint" PrimaryDataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Left" PrimaryDataPoint="Left" />
+            </Card>
+        </ClickWraper>
+
+        <Card>
+            <CardContent Variant="E_CARD_CONTENT.DataPoint">
+                $500
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardContent Variant="E_CARD_CONTENT.DataPoint">
+                $500
+            </CardContent>
+            <CardFooter Variant="E_CARD_FOOTER.DoubleDataPoint" PrimaryDataPoint="$90" SecondaryDataPoint="4.5%" />
+        </Card>
+        ---
+        @* Full card with header and footer *@
+        <Card Variant="E_CARD.Flat">
+            <CardHeader>
+                <CardTitle>
+                    <Icon>
+                        <GearIcon Size="28" />
+                    </Icon>
+                    <Text>
+                        Bank Settings
+                    </Text>
+                </CardTitle>
+                <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
+            </CardHeader>
+            <CardContent>cool card content</CardContent>
+            <CardFooter>Action</CardFooter>
+        </Card>
+        ---
+        <Card Variant="E_CARD.Raised">
+            <CardHeader>
+                <CardTitle>
+                    <Icon>
+                        <OpenWindowIcon Size="28" />
+                    </Icon>
+                    <Text>
+                        Window or smth
+                    </Text>
+                </CardTitle>
+                <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
+                <CardAction>
+                    <Button Color="E_COLOR_BASIC.Remove">Delete</Button>
+                </CardAction>
+            </CardHeader>
+            <CardContent>coaweadwadt</CardContent>
+            <CardFooter>Action</CardFooter>
+        </Card>
+        ---
+        @* Inset card *@
+        <Card Variant="E_CARD.Inset">
+            <CardContent>Inset</CardContent>
+        </Card>
+    </div>
+</section>
+
+<section class="checkbox-section">
+    <div>
+        <h1>Checkbox</h1>
+        <div>Checked: @inputCheckbox</div>
+    </div>
+    <div class="checkbox-container">
+        <Checkbox @bind-Value="inputCheckbox" />
+        <Checkbox @bind-Value="inputCheckbox" />
+    </div>
+</section>
+
+<section class="modal-section">
+    <div>
+        <h1>Modal</h1>
+        <div>Modal: </div>
+    </div>
+    <div>
+        <div>
+            <Button Variant="E_VARIANT.Primary" OnClick="OpenModal">
+                Open Modal
+            </Button>
+        </div>
+    </div>
+    <div class="modal-one">
+        <Modal Title="Modal One"
+               Size="E_SIZE.md"
+               Open="showModalOne"
+               OnClose="CloseModal"
+               HelpBtn="true"
+               Variant="E_MODAL.AddEdit">
+            <div></div>
+        </Modal>
+    </div>
+    <div>
+        <div>
+            Bank Object To Edit
+            @* @bankObjectToEdit.Name + @bankObjectToEdit.Country + @bankObjectToEdit.State *@
+        </div>
+        <div>
+            <Button Variant="E_VARIANT.Primary" OnClick="OpenModalTwo">
+                Open Modal Two
+            </Button>
+        </div>
+    </div>
+    <div class="modal-two">
+        <Modal Title="Edit Bank"
+               Size="E_SIZE.lg"
+               Open="showModalTwo"
+               OnClose="CloseModalTwo"
+               Variant="E_MODAL.AddEdit">
             <Form>
-                <FormHeader>
-                    <FormTitle>Crate Bank Account</FormTitle>
-                    <FormDescription>Manually enter bank account information to file transactions and cards under</FormDescription>
-                </FormHeader>
-                <FormContent>
-                    <FormRow>
-                        <FormCell Ratio="4/6">
-                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
-                        </FormCell>
-                        <FormCell Ratio="2/6" CenterVertically="true" AlignRight="true">
-                            <Checkbox FlipLabel="true" Label="Check Box" />
-                        </FormCell>
-                    </FormRow>
-                    <FormRow>
-                        <FormCell Ratio="2/5">
-                            <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Account Number" Placeholder="4444000012349876" />
-                        </FormCell>
-                        <FormCell Ratio="2/5">
-                            <Input InputType="E_INPUT_TYPE.Text" @bind-Value="inputText" Label="Routing Number" Placeholder="4444000012349876" />
-                        </FormCell>
-                        <FormCell Ratio="1/5">
-                            <div class="form-checkbox-test">
-                                <Checkbox Label="Unflip" />
-                            </div>
-                        </FormCell>
-                    </FormRow>
-                    <FormRow>
-                        <FormCell Ratio="3/6">
-                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
-                        </FormCell>
-                        <FormCell Ratio="2/6">
-                            <Input InputType="E_INPUT_TYPE.Text" Label="Name" @bind-Value="inputText" Placeholder="First Horizon Checking" />
-                        </FormCell>
-                        <FormCell Ratio="1/6">
-                            <HexColorPicker @bind-Value="myColor" Label="Brand Color" Size="E_SIZE.xs" />
-                        </FormCell>
-                    </FormRow>
-                </FormContent>
-                <FormFooter>
-                    <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
-                    <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
-                </FormFooter>
-            </Form>
-        </div>
-        <div class="form-container">
-            <Form>
-                <FormHeader>
-                    <FormTitle>Bank Entity</FormTitle>
-                    <FormDescription>The entity that manages your accounts</FormDescription>
-                </FormHeader>
+                @* <FormHeader>
+                        <FormTitle>Bank Entity</FormTitle>
+                        <FormDescription>The entity that manages your accounts</FormDescription>
+                    </FormHeader> *@
                 <FormContent>
                     <FormRow>
                         <FormCell Ratio="1/2">
                             <Input Variant="INPUT_VARIANT.Default" Label="Name" @bind-Value="inputText" />
                         </FormCell>
+                        <FormCell Ratio="1/4">
+                            <Dropdown Variant="E_DROPDOWN.Default" Label="Country" Options="@(["USA", "CAN", "MEX"])" @bind-Value="inputDropdown" />
+                        </FormCell>
+                        <FormCell Ratio="1/4">
+                            <Dropdown Variant="E_DROPDOWN.Default" Label="State" Options="@(["TN", "AK", "OR", "NY"])" @bind-Value="inputDropdown" />
+                        </FormCell>
                     </FormRow>
                 </FormContent>
                 <FormFooter>
-                    <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.OffWhite" OnClick="@(() => ButtonClick_DI("Form Cancel"))">Cancel</Button>
-                    <Button Variant="E_VARIANT.Primary" OnClick="@(() => ButtonClick_DI("Form Create"))">Create</Button>
+                    <Button Variant="E_VARIANT.Secondary" Color="E_COLOR_BASIC.OffWhite" Onclick="CloseModalTwo">Cancel</Button>
+                    <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Info" Onclick="CloseModalTwo">Create</Button>
                 </FormFooter>
             </Form>
-        </div>
-    </section>
+        </Modal>
+    </div>
+</section>
 
-    <section class="dropdown-section">
-        <div>
-            <h1>Dropdown</h1>
-            <div>Dropdown: @inputDropdown</div>
-        </div>
-        <div>
-            <div class="dropdown-container">
-                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" IncludeEmptyOption=true Label="Default" @bind-Value="@inputDropdown" />
-                <Dropdown Variant="E_DROPDOWN.Operations" @bind-Value="@inputDropdown" />
-                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "Really long and cool option for really long and cool people"])" Label="Other" @bind-Value="@inputDropdown" />
-                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.sm" IncludeEmptyOption=true Label="Small" @bind-Value="@inputDropdown" />
-                <Dropdown Options="@(["Cool Option", "Lame Option", "Other Option", "GooGoo"])" Size="E_SIZE.lg" IncludeEmptyOption=true Label="Large" @bind-Value="@inputDropdown" />
-                <Dropdown Variant="E_DROPDOWN.StringOperations" @bind-Value="@inputDropdown" />
-            </div>
-        </div>
-    </section>
-
-    <section class="card-section">
-        <div>
-            <h1>Cards & Click Wrapper</h1>
-            <div>Click: @buttonText</div>
-        </div>
-        <div class="card-container">
-            @* Simple card *@
-            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
-                <Card Variant="E_CARD.Raised" HoverEffects="true">
-                    <CardHeader>
-                        <CardTitle>
-                            <Icon>
-                                <HouseIcon Size="22" />
-                            </Icon>
-                            <Text>East TN Home in the country and stuff like that</Text>
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent IsDataPoint="true">$400,000</CardContent>
-                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Center">
-                        Center
-                    </CardFooter>
-                </Card>
-            </ClickWraper>
-            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
-                <Card Variant="E_CARD.Raised" HoverEffects="true">
-                    <CardHeader class="custom-blue-header">
-                        <CardTitle>
-                            <Icon>
-                                <HouseIcon Size="22" />
-                            </Icon>
-                            <Text>East TN Home in the country and stuff like that</Text>
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent IsDataPoint="true">$400,000</CardContent>
-                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Right">
-                        Right
-                    </CardFooter>
-                </Card>
-            </ClickWraper>
-            <ClickWraper OnClick="@(() => ButtonClick_DI("ButtonWrapperClick"))">
-                <Card Variant="E_CARD.Inset" HoverEffects="true">
-                    <CardHeader>
-                        <CardTitle>
-                            <Icon>
-                                <HouseIcon Size="22" />
-                            </Icon>
-                            <Text>East TN Home in the country and stuff like that</Text>
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent IsDataPoint="true">$400,000</CardContent>
-                    <CardFooter IsDataPoint="true" DataStatus="E_STATUS.Neutral" LateralDirection="E_DIRECTION_LATERAL.Left">
-                        Left
-                    </CardFooter>
-                </Card>
-            </ClickWraper>
-            ---
-            @* Full card with header and footer *@
-            <Card Variant="E_CARD.Flat">
-                <CardHeader>
-                    <CardTitle>
-                        <Icon>
-                            <GearIcon Size="28" />
-                        </Icon>
-                        <Text>
-                            Bank Settings
-                        </Text>
-                    </CardTitle>
-                    <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
-                </CardHeader>
-                <CardContent>cool card content</CardContent>
-                <CardFooter>Action</CardFooter>
-            </Card>
-            ---
-            <Card Variant="E_CARD.Raised">
-                <CardHeader>
-                    <CardTitle>
-                        <Icon>
-                            <OpenWindowIcon Size="28" />
-                        </Icon>
-                        <Text>
-                            Window or smth
-                        </Text>
-                    </CardTitle>
-                    <CardDescription>Description 2 that is really long and ciool andaind nasi naisdn ias</CardDescription>
-                    <CardAction>
-                        <Button Color="E_COLOR_BASIC.Remove">Delete</Button>
-                    </CardAction>
-                </CardHeader>
-                <CardContent>coaweadwadt</CardContent>
-                <CardFooter>Action</CardFooter>
-            </Card>
-            ---
-            @* Inset card *@
-            <Card Variant="E_CARD.Inset">
-                <CardContent>Inset</CardContent>
-            </Card>
-        </div>
-    </section>
-
-    <section class="checkbox-section">
-        <div>
-            <h1>Checkbox</h1>
-            <div>Checked: @inputCheckbox</div>
-        </div>
-        <div class="checkbox-container">
-            <Checkbox @bind-Value="inputCheckbox" />
-            <Checkbox @bind-Value="inputCheckbox" />
-        </div>
-    </section>
-
-    <section class="modal-section">
-        <div>
-            <h1>Modal</h1>
-            <div>Modal: </div>
-        </div>
-        <div>
-            <div>
-                <Button Variant="E_VARIANT.Primary" OnClick="OpenModal">
-                    Open Modal
-                </Button>
-            </div>
-        </div>
-        <div class="modal-one">
-            <Modal Title="Modal One"
-                   Size="E_SIZE.md"
-                   Open="showModalOne"
-                   OnClose="CloseModal"
-                   HelpBtn="true"
-                   Variant="E_MODAL.AddEdit">
-                <div></div>
-            </Modal>
-        </div>
-        <div>
-            <div>
-                Bank Object To Edit
-                @* @bankObjectToEdit.Name + @bankObjectToEdit.Country + @bankObjectToEdit.State *@
-            </div>
-            <div>
-                <Button Variant="E_VARIANT.Primary" OnClick="OpenModalTwo">
-                    Open Modal Two
-                </Button>
-            </div>
-        </div>
-        <div class="modal-two">
-            <Modal Title="Edit Bank"
-                   Size="E_SIZE.lg"
-                   Open="showModalTwo"
-                   OnClose="CloseModalTwo"
-                   Variant="E_MODAL.AddEdit">
-                <Form>
-                    @* <FormHeader>
-                        <FormTitle>Bank Entity</FormTitle>
-                        <FormDescription>The entity that manages your accounts</FormDescription>
-                    </FormHeader> *@
-                    <FormContent>
-                        <FormRow>
-                            <FormCell Ratio="1/2">
-                                <Input Variant="INPUT_VARIANT.Default" Label="Name" @bind-Value="inputText" />
-                            </FormCell>
-                            <FormCell Ratio="1/4">
-                                <Dropdown Variant="E_DROPDOWN.Default" Label="Country" Options="@(["USA", "CAN", "MEX"])" @bind-Value="inputDropdown" />
-                            </FormCell>
-                            <FormCell Ratio="1/4">
-                                <Dropdown Variant="E_DROPDOWN.Default" Label="State" Options="@(["TN", "AK", "OR", "NY"])" @bind-Value="inputDropdown" />
-                            </FormCell>
-                        </FormRow>
-                    </FormContent>
-                    <FormFooter>
-                        <Button Variant="E_VARIANT.Secondary" Color="E_COLOR_BASIC.OffWhite" Onclick="CloseModalTwo">Cancel</Button>
-                        <Button Variant="E_VARIANT.Primary" Color="E_COLOR_BASIC.Info" Onclick="CloseModalTwo">Create</Button>
-                    </FormFooter>
-                </Form>
-            </Modal>
-        </div>
-    </section>
-
-    <section class="tooltip-section">
-        <div>
-            <h1>Tooltips</h1>
-        </div>
-        <div class="icon-frame">
-            <Tooltip Text="Over Div" Position="E_DIRECTION_CARDINAL.Down">
-                <div class="icon">
-                    <TrashIcon Size="24" />
-                </div>
-            </Tooltip>
+<section class="tooltip-section">
+    <div>
+        <h1>Tooltips</h1>
+    </div>
+    <div class="icon-frame">
+        <Tooltip Text="Over Div" Position="E_DIRECTION_CARDINAL.Down">
             <div class="icon">
-                <Tooltip Text="Over Icon" Position="E_DIRECTION_CARDINAL.Down">
-                    <PlusIcon Size="24" />
-                </Tooltip>
+                <TrashIcon Size="24" />
             </div>
-            <Tooltip Text="Over Div Left" Position="E_DIRECTION_CARDINAL.Left">
-                <div class="icon">
-                    <TrashIcon Size="24" />
-                </div>
-            </Tooltip>
-            <Tooltip Text="Over Div R" Position="E_DIRECTION_CARDINAL.Right">
-                <div class="icon">
-                    <TrashIcon Size="24" />
-                </div>
-            </Tooltip>
-            <Tooltip Text="Over Div T" Position="E_DIRECTION_CARDINAL.Up">
-                <div class="icon">
-                    <TrashIcon Size="24" />
-                </div>
+        </Tooltip>
+        <div class="icon">
+            <Tooltip Text="Over Icon" Position="E_DIRECTION_CARDINAL.Down">
+                <PlusIcon Size="24" />
             </Tooltip>
         </div>
-    </section>
+        <Tooltip Text="Over Div Left" Position="E_DIRECTION_CARDINAL.Left">
+            <div class="icon">
+                <TrashIcon Size="24" />
+            </div>
+        </Tooltip>
+        <Tooltip Text="Over Div R" Position="E_DIRECTION_CARDINAL.Right">
+            <div class="icon">
+                <TrashIcon Size="24" />
+            </div>
+        </Tooltip>
+        <Tooltip Text="Over Div T" Position="E_DIRECTION_CARDINAL.Up">
+            <div class="icon">
+                <TrashIcon Size="24" />
+            </div>
+        </Tooltip>
+    </div>
+</section>
 
-    <section class="data-tooltip-section">
-        <div>
-            <h1>Data Point Tooltip</h1>
-        </div>
-        <div class="data-point-tooltip-container">
-            <Card>
-                <CardHeader>
-                    <CardTitle>
-                        <Title>
-                            Data Point Tooltip!
-                        </Title>
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <DataPointTooltip DataPoint="$500">
-                        This is some cool content :D
-                    </DataPointTooltip>
-                    <DataPointTooltip DataPoint="$500" Variant="E_STATUS.Positive">
-                        Pos
-                    </DataPointTooltip>
-                    <DataPointTooltip Position="E_DIRECTION_CARDINAL.Right" DataPoint="$500" Variant="E_STATUS.Negative">
-                        Neg
-                    </DataPointTooltip>
-                </CardContent>
-            </Card>
-        </div>
-    </section>
+<section class="data-tooltip-section">
+    <div>
+        <h1>Data Point Tooltip</h1>
+    </div>
+    <div class="data-point-tooltip-container">
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    <Title>
+                        Data Point Tooltip!
+                    </Title>
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <DataPointTooltip DataPoint="$500">
+                    This is some cool content :D
+                </DataPointTooltip>
+                <DataPointTooltip DataPoint="$500" Variant="E_STATUS.Positive">
+                    Pos
+                </DataPointTooltip>
+                <DataPointTooltip Position="E_DIRECTION_CARDINAL.Right" DataPoint="$500" Variant="E_STATUS.Negative">
+                    Neg
+                </DataPointTooltip>
+            </CardContent>
+        </Card>
+    </div>
+</section>
 </div>
