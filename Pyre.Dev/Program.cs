@@ -1,6 +1,7 @@
-using Pyre.Dev.Components;
 using Microsoft.EntityFrameworkCore;
+using Pyre.Dev.Components;
 using Pyre.Dev.Services;
+using Pyre.Element.Navbar;
 
 namespace Pyre.Dev
 {
@@ -19,6 +20,8 @@ namespace Pyre.Dev
             options.UseSqlite("Data Source=Pyre.db"));
 
             builder.Services.AddScoped<DatabaseService>();
+            // Other Services
+            builder.Services.AddScoped<NavigationHistoryService>();
 
             var app = builder.Build();
 

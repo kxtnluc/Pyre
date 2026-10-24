@@ -80,6 +80,8 @@
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
+    /* --- Topbar --- */
+    --topbar-height: 3rem;
     /* --- Fonts --- */
     --font-serif: "Bree Serif", serif;
     --font-zain: "Zain", sans-serif;

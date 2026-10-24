@@ -170,3 +170,36 @@
     .sidebar__tab__action__item:hover {
         background-color: var(--color-info-faded);
     }
+
+
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 16rem;
+    right: 0;
+    height: var(--topbar-height);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: var(--color-offwhite);
+    padding-left: 1rem;
+    gap: 2rem;
+    z-index: 100;
+    transition: left 250ms ease;
+}
+
+.topbar--collapsed {
+    left: 3.8rem;
+}
+
+.topbar--back, .topbar--forward{
+    transition: 200ms;
+    border-radius: var(--radius-md);
+}
+
+    .topbar--back:hover, .topbar--forward:hover {
+        cursor: pointer;
+        background-color: var(--color-secondary-faded);
+    }

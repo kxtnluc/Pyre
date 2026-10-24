@@ -1,6 +1,9 @@
 ﻿@using Pyre.Element.Icons
 @using Pyre.Element.Navbar
+@inject NavigationHistoryService _history
 @inherits LayoutComponentBase
+@implements IDisposable
+
 
 <div class="layout @(_collapsed ? "layout--collapsed" : "")">
     
@@ -9,7 +12,9 @@
         OnToggle="HandleToggle"
         Sidebar="Sidebar"    
         Collapsed="_collapsed"
-    />
+        HasTopBar="true"
+                OnBackNav="HandleBackNav"
+                OnForwardNav="HandleForwardNav"  />
     
     <main class="layout__main">
         @Body 
@@ -34,6 +39,9 @@
 
     protected override void OnInitialized()
     {
+
+        _history.Changed += HandleHistoryChanged;
+
         Sidebar.MainTabs = new()
         {
             new NavBarTabPyre { Label = "Home", Url = "/", Icon = @<HouseIcon Size="26" /> },
@@ -59,4 +67,19 @@
     {
         test = "!";
     }
+
+    private void HandleBackNav()
+    {
+        _history.GoBack();
+    }
+
+    private void HandleForwardNav()
+    {
+        _history.GoForward();
+    }
+
+    private void HandleHistoryChanged() => InvokeAsync(StateHasChanged);
+
+    public void Dispose() => _history.Changed -= HandleHistoryChanged;
+
 }
